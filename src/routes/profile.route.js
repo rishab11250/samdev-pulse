@@ -239,7 +239,7 @@ router.get('/', async (req, res) => {
 
   // build SVG content
   // Row 3: CP section (before trophies), Row 4: trophies
-  const cpSectionHeight = showCPSection ? 120 : 0;
+  const cpSectionHeight = showCPSection ? 240 : 0;
   const cpRowY = row2Y + row2Height + LAYOUT.cardGap;
   const trophyRowY = showCPSection
     ? cpRowY + cpSectionHeight + LAYOUT.cardGap
