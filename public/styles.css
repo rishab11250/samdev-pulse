@@ -96,6 +96,50 @@ h6 {
   }
 }
 
+/*==== NAVBAR==== */
+html{
+  scroll-behavior: smooth;
+}
+section{
+  scroll-margin-top: 80px;
+}
+.navbar{
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 8, 23, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+.navbtn ul{
+  display: flex;
+  list-style: none;
+  gap: 70px;
+  padding: 20px;
+}
+.navbtn a{
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
+.navlogo{
+  padding-left: 50px;
+}
+.navlogo img{
+  height: 60px;
+}
+.navbtn{
+  padding-right: 100px;
+}
+
+
 
 /* ===== Hero Section ===== */
 .hero {
