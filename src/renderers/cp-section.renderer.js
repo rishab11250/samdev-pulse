@@ -136,9 +136,10 @@ function renderCodeforcesCard(x, y, width, data, colors) {
   };
 
   const rankShort = rankMap[data.rank?.toLowerCase()] ?? data.rank ?? 'unrated';
-  const maxRankShort = rankMap[data.maxRank?.toLowerCase()] ?? data.maxRank ?? 'unrated';
+  const solved = data.problemsSolved ?? 0;
 
   return `
+    <!-- Rating -->
     <text x="${col1X}" y="${statsY}"
       font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
       font-size="32" font-weight="700" fill="${colors.primaryText}">${data.rating}</text>
@@ -146,6 +147,7 @@ function renderCodeforcesCard(x, y, width, data, colors) {
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
       font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Rating</text>
 
+    <!-- Rank + Solved -->
     <text x="${col2X+6}" y="${statsY - 18}"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
       font-size="11" font-weight="600" fill="#6366f1">R</text>
@@ -155,11 +157,12 @@ function renderCodeforcesCard(x, y, width, data, colors) {
 
     <text x="${col2X+6}" y="${statsY + 2}"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" font-weight="600" fill="#8b5cf6">MR</text>
-    <text x="${col2X + 26}" y="${statsY + 2}"
+      font-size="11" font-weight="600" fill="#10b981">S</text>
+    <text x="${col2X + 18}" y="${statsY + 2}"
       font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" font-weight="700" fill="${colors.primaryText}">${maxRankShort}</text>
+      font-size="11" font-weight="700" fill="${colors.primaryText}">${solved}</text>
 
+    <!-- Max Rating -->
     <text x="${col3X+6}" y="${statsY}"
       font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
       font-size="32" font-weight="700" fill="${colors.primaryText}">${data.maxRating}</text>
@@ -177,29 +180,39 @@ function renderCodeChefCard(x, y, width, data, colors) {
   const col2X = x + 20 + (width - 40) / 3;
   const col3X = x + 20 + ((width - 40) / 3) * 2;
 
+  const globalRank = data.globalRank ?? 'N/A';
+  const division = data.division ?? 'Div 4';
+
   return `
     <!-- Current Rating -->
-    <text x="${col1X}" y="${statsY}" 
+    <text x="${col1X}" y="${statsY}"
       font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
       font-size="32" font-weight="700" fill="${colors.primaryText}">${data.currentRating}</text>
     <text x="${col1X}" y="${statsY + 20}"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
       font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Rating</text>
 
-    <!-- Stars — centered in middle column -->
-    <text x="${col2X+16}" y="${statsY -8}" 
+    <!-- Stars -->
+    <text x="${col2X + 10}" y="${statsY - 8}"
       font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="22" font-weight="700" fill="#f59e0b">${data.stars ?? ' 1★'}</text>
-    <text x="${col2X+16}" y="${statsY + 20}"
+      font-size="22" font-weight="700" fill="#f59e0b">${data.stars ?? '1★'}</text>
+    <text x="${col2X + 10}" y="${statsY + 10}"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
       font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Stars</text>
 
-    <!-- Highest Rating -->
-    <text x="${col3X}" y="${statsY}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="32" font-weight="700" fill="${colors.primaryText}">${data.highestRating}</text>
-    <text x="${col3X}" y="${statsY + 20}"
+    <!-- Division badge -->
+    <rect x="${col2X + 6}" y="${statsY + 17}" width="44" height="16" rx="4"
+      fill="#8b5cf6" opacity="0.18"/>
+    <text x="${col2X + 28}" y="${statsY + 29}"
       font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Highest</text>
+      font-size="10" font-weight="600" fill="#a78bfa" text-anchor="middle">${division}</text>
+
+    <!-- Global Rank -->
+    <text x="${col3X}" y="${statsY - 8}"
+      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="24" font-weight="700" fill="${colors.primaryText}">${globalRank}</text>
+    <text x="${col3X}" y="${statsY + 10}"
+      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Global Rank</text>
   `;
 }

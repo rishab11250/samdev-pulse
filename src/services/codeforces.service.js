@@ -1,15 +1,34 @@
 export async function getCodeforcesData(handle) {
   try {
-    const res = await fetch(
-      `https://codeforces.com/api/user.info?handles=${handle}`
-    );
-    const data = await res.json();
+    const [infoRes, statusRes] = await Promise.all([
+      fetch(`https://codeforces.com/api/user.info?handles=${handle}`),
+      fetch(`https://codeforces.com/api/user.status?handle=${handle}&from=1&count=10000`),
+    ]);
 
-    if (data.status !== 'OK') {
+    const infoData = await infoRes.json();
+    if (infoData.status !== 'OK') {
       return { success: false, error: 'User not found' };
     }
 
-    const user = data.result[0];
+    const user = infoData.result[0];
+
+    // Count distinct solved problems
+    let problemsSolved = 0;
+    try {
+      const statusData = await statusRes.json();
+      if (statusData.status === 'OK') {
+        const solved = new Set();
+        for (const sub of statusData.result) {
+          if (sub.verdict === 'OK' && sub.problem) {
+            solved.add(`${sub.problem.contestId ?? ''}${sub.problem.index}`);
+          }
+        }
+        problemsSolved = solved.size;
+      }
+    } catch (_) {
+      // non-critical — silently fall back to 0
+    }
+
     return {
       success: true,
       data: {
@@ -18,6 +37,7 @@ export async function getCodeforcesData(handle) {
         maxRating: user.maxRating ?? 0,
         rank: user.rank ?? 'unrated',
         maxRank: user.maxRank ?? 'unrated',
+        problemsSolved,
       }
     };
   } catch (err) {
