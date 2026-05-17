@@ -21,46 +21,45 @@ import { logApiAccess } from '../utils/logger.js';
 
 const router = Router();
 
-// default fallback username
 const DEFAULT_USERNAME = process.env.DEFAULT_USERNAME || 'SamXop123';
 
-// to format large numbers (e.g. 1500 -> 1.5k)
+const CF_RANK_MAP = {
+  'newbie': 'Newbie',
+  'pupil': 'Pupil',
+  'specialist': 'Specialist',
+  'expert': 'Expert',
+  'candidate master': 'Cand.M',
+  'master': 'Master',
+  'international master': 'Int.M',
+  'grandmaster': 'GM',
+  'international grandmaster': 'Int.GM',
+  'legendary grandmaster': 'Leg.GM',
+};
+
 function formatNumber(num) {
-  if (num >= 1000000) {
-    return (num / 1000000).toFixed(1) + 'M';
-  }
-  if (num >= 1000) {
-    return (num / 1000).toFixed(1) + 'k';
-  }
+  if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+  if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
   return num.toString();
 }
 
-// calculate top languages from repos
 function getTopLanguages(repos, max = 5) {
   const langCounts = {};
-
   repos.forEach((repo) => {
     if (repo.language) {
       langCounts[repo.language] = (langCounts[repo.language] || 0) + 1;
     }
   });
-
-  const sorted = Object.entries(langCounts)
+  return Object.entries(langCounts)
     .map(([label, value]) => ({ label, value }))
     .sort((a, b) => b.value - a.value)
     .slice(0, max);
-
-  return sorted;
 }
 
-// GET /api/profile?username=SamXop123&theme=dark&leetcode=username&codeforces=handle&codechef=handle
 router.get('/', async (req, res) => {
-  // log API access
   logApiAccess(req).catch(err => console.error('Log failed:', err.message));
 
   const { theme, leetcode, align, hide_trophies, codeforces, codechef } = req.query;
 
-  // Sanitize and validate username
   const rawUsername = typeof req.query.username === 'string' ? req.query.username : '';
   const usernameRegex = /^[a-zA-Z0-9]([a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$|^[a-zA-Z0-9]$/;
 
@@ -86,31 +85,25 @@ router.get('/', async (req, res) => {
     username = rawUsername;
   }
 
-  // theme (default is dark)
   setTheme(theme || 'dark');
 
-  // check if LeetCode is explicitly disabled
   const leetcodeDisabled = leetcode === 'false';
   const shouldRenderLeetCode = Boolean(leetcode && !leetcodeDisabled);
   const showRepositoryStats = !shouldRenderLeetCode;
   const hideTrophies = hide_trophies === 'true';
 
-  // alignment
   const validAlignments = ['left', 'center', 'right'];
   const headerAlign = validAlignments.includes(align) ? align : 'left';
 
-  // fetch github data
   const result = await getGitHubUserData(username);
   if (!result.success) {
     return res.status(500).json({ error: result.error });
   }
   const { data } = result;
 
-  // fetch contribution data for streaks
   const contributionResult = await getContributionData(username);
   const contributionData = contributionResult.success ? contributionResult.data : null;
 
-  // fetch all platform data in parallel
   const [leetcodeResult, codeforcesResult, codechefResult] = await Promise.all([
     shouldRenderLeetCode ? getLeetCodeData(leetcode) : null,
     codeforces ? getCodeforcesData(codeforces) : null,
@@ -121,7 +114,6 @@ router.get('/', async (req, res) => {
   const codeforcesData = codeforcesResult?.success ? codeforcesResult.data : null;
   const codechefData = codechefResult?.success ? codechefResult.data : null;
 
-  // count active CP platforms
   const cpPlatforms = [
     shouldRenderLeetCode ? leetcodeData : null,
     codeforcesData,
@@ -135,7 +127,6 @@ router.get('/', async (req, res) => {
   const cardHeight = 140;
   const row1Y = 95;
 
-  // Row 2
   const row2Y = row1Y + cardHeight + LAYOUT.cardGap;
   const chartWidth = calculateCardWidth(2) + LAYOUT.cardGap / 2;
   const row2CardWidth = calculateCardWidth(2) - LAYOUT.cardGap / 2;
@@ -143,7 +134,6 @@ router.get('/', async (req, res) => {
 
   const fullWidth = width - (LAYOUT.padding * 2);
 
-  // Card 1: github activity
   const card1Title = 'GitHub Activity';
   const card1Stats = [
     { label: 'Contributions', value: contributionData ? formatNumber(contributionData.totalContributions) : '-' },
@@ -151,14 +141,12 @@ router.get('/', async (req, res) => {
     { label: 'Issues Opened', value: contributionData ? formatNumber(contributionData.totalIssues) : '-' },
   ];
 
-  // Card 2: streak stats
   const streakStats = [
     { label: 'Current', value: contributionData ? formatNumber(contributionData.currentStreak) : '-' },
     { label: 'Longest', value: contributionData ? formatNumber(contributionData.longestStreak) : '-' },
     { label: 'Total', value: contributionData ? formatNumber(contributionData.totalContributionDays) : '-' },
   ];
 
-// Card 3: adaptive based on CP platforms
   let card3Title;
   let card3Stats;
 
@@ -178,7 +166,13 @@ router.get('/', async (req, res) => {
       };
       const getEMHStats = () => {
         if (!leetcodeData) return { label: 'E/M/H', value: '-', isVertical: false };
-        return { label: 'E/M/H', isVertical: true, easy: leetcodeData.easySolved, medium: leetcodeData.mediumSolved, hard: leetcodeData.hardSolved };
+        return {
+          label: 'E/M/H',
+          isVertical: true,
+          easy: leetcodeData.easySolved,
+          medium: leetcodeData.mediumSolved,
+          hard: leetcodeData.hardSolved,
+        };
       };
       card3Title = leetcodeData ? 'LeetCode Stats' : 'Competitive Coding';
       card3Stats = [
@@ -189,12 +183,11 @@ router.get('/', async (req, res) => {
     }
   } else if (!showCPSection) {
     if (codeforcesData) {
-      const rank = codeforcesData.rank ?? 'unrated';
-      const shortRank = rank.split(' ').map(w => w[0].toUpperCase() + w.slice(1, 3)).join('.');
+      const rankShort = CF_RANK_MAP[codeforcesData.rank?.toLowerCase()] ?? codeforcesData.rank ?? 'unrated';
       card3Title = 'Codeforces Stats';
       card3Stats = [
         { label: 'Rating', value: String(codeforcesData.rating) },
-        { label: 'Rank', value: shortRank },
+        { label: 'Rank', value: rankShort },
         { label: 'Max Rating', value: String(codeforcesData.maxRating) },
       ];
     } else {
@@ -214,7 +207,6 @@ router.get('/', async (req, res) => {
     ];
   }
 
-  // contribution chart data
   let chartData;
   if (contributionData && contributionData.days && contributionData.days.length > 0) {
     const recentDays = contributionData.days.slice(-30);
@@ -223,10 +215,8 @@ router.get('/', async (req, res) => {
     chartData = generateFakeContributionData(30);
   }
 
-  // top languages
   const topLanguages = getTopLanguages(data.repos, 5);
 
-  // trophy data
   const trophyData = {
     commits: contributionData?.totalContributions || 0,
     prs: contributionData?.totalPRs || 0,
@@ -237,9 +227,7 @@ router.get('/', async (req, res) => {
     reviews: contributionData?.totalReviews || 0,
   };
 
-  // build SVG content
-  // Row 3: CP section (before trophies), Row 4: trophies
-  const cpSectionHeight = showCPSection ? 240 : 0;
+  const cpSectionHeight = showCPSection ? 156 : 0;
   const cpRowY = row2Y + row2Height + LAYOUT.cardGap;
   const trophyRowY = showCPSection
     ? cpRowY + cpSectionHeight + LAYOUT.cardGap
@@ -263,16 +251,13 @@ router.get('/', async (req, res) => {
       align: headerAlign,
     }),
 
-    // Row 1: stat cards
     renderCardWithStats({ x: calculateCardX(0, cardWidth), y: row1Y, width: cardWidth, height: cardHeight, title: card1Title, stats: card1Stats }),
     renderCardWithStats({ x: calculateCardX(1, cardWidth), y: row1Y, width: cardWidth, height: cardHeight, title: 'Streak Stats', stats: streakStats }),
     renderCardWithStats({ x: calculateCardX(2, cardWidth), y: row1Y, width: cardWidth, height: cardHeight, title: card3Title, stats: card3Stats }),
 
-    // Row 2: contribution chart + top languages
     renderContributionChart({ x: LAYOUT.padding, y: row2Y, width: chartWidth, height: row2Height, title: 'Contribution Activity', data: chartData }),
     renderDonutChart({ x: LAYOUT.padding + chartWidth + LAYOUT.cardGap, y: row2Y, width: row2CardWidth, height: row2Height, title: 'Top Languages', data: topLanguages }),
 
-    // Row 3: CP section (only when 2+ platforms)
     showCPSection
       ? renderCPSection({
           x: LAYOUT.padding,
@@ -284,7 +269,6 @@ router.get('/', async (req, res) => {
         })
       : '',
 
-    // Row 4: trophy row
     hideTrophies
       ? ''
       : renderTrophyRow({
