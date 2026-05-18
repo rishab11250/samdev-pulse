@@ -18,23 +18,32 @@
 
 <body>
   <!-- NAVBAR -->
-    <div class="navbar">
-      <div class="navlogo">
-        <a href="https://samdev-pulse.vercel.app/">
-          <img src="./logo-samdev-pulse.png" alt="logo-samdev-pulse">
-        </a>
-      </div>
-      <div class="navbtn">
-        <ul>
-          <li><a href="#home">HOME</a></li>
-          <li><a href="#features">FEATURES</a></li>
-          <li><a href="#themes">THEMES</a></li>
-          <li><a href="#preview">TRY IT LIVE</a></li>
-          <li><a href="#guide">GUIDE</a></li>
-          <li><a href="#about">ABOUT</a></li>
-        </ul>
-      </div>
+  <div class="navbar">
+    <div class="navlogo">
+      <a href="https://samdev-pulse.vercel.app/">
+        <img src="./logo-samdev-pulse.png" alt="logo-samdev-pulse">
+      </a>
     </div>
+
+    <!-- Hamburger button (visible on mobile only) -->
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="navbtn" id="nav-menu">
+      <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#features">FEATURES</a></li>
+        <li><a href="#themes">THEMES</a></li>
+        <li><a href="#preview">TRY IT LIVE</a></li>
+        <li><a href="#guide">GUIDE</a></li>
+        <li><a href="#about">ABOUT</a></li>
+      </ul>
+    </div>
+  </div>
+
   <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="hero-background"></div>
@@ -349,7 +358,7 @@
             <p class="theme-desc">All natural pine, faux fur and a bit of soho vibes</p>
           </div>
         </div>
-        
+
         <div class="theme-card" data-theme="aurora">
           <div class="theme-preview aurora-theme">
             <div class="theme-swatch-group">
@@ -363,7 +372,7 @@
             <p class="theme-desc">Cool cyan and emerald lights over deep blue night</p>
           </div>
         </div>
-        
+
         <div class="theme-card" data-theme="midnight-sunset">
           <div class="theme-preview midnight-sunset-theme">
             <div class="theme-swatch-group">
