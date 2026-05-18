@@ -146,8 +146,128 @@ section{
   padding-right: 100px;
 }
 
+/* ===== Hamburger Button ===== */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  margin-right: 16px;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+}
 
+.nav-hamburger:hover {
+  border-color: var(--accent-purple);
+  background: var(--surface-glass);
+}
 
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-secondary);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+  transform-origin: center;
+}
+
+/* Animate to X when open */
+.nav-hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--accent-purple);
+}
+.nav-hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--accent-purple);
+}
+
+/* ===== Responsive Navbar ===== */
+@media (max-width: 900px) {
+  .navlogo {
+    padding-left: 20px;
+  }
+
+  .navbtn {
+    padding-right: 0;
+  }
+
+  .navbtn ul {
+    gap: 32px;
+    padding: 16px 24px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .navbtn {
+    /* Hidden by default on mobile — drops down from navbar */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(8, 8, 23, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+    /* Slide animation */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.25s ease;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .navbtn.is-open {
+    max-height: 400px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .navbtn ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 0 16px;
+  }
+
+  .navbtn ul li a {
+    display: block;
+    padding: 12px 28px;
+    font-size: 0.9375rem;
+    letter-spacing: 0.06em;
+    border-left: 2px solid transparent;
+    transition: color var(--transition-base),
+                border-color var(--transition-base),
+                background var(--transition-base);
+  }
+
+  .navbtn ul li a:hover,
+  .navbtn ul li a:focus-visible {
+    color: var(--accent-purple);
+    border-left-color: var(--accent-purple);
+    background: rgba(139, 92, 246, 0.06);
+    transform: none; /* override the desktop lift effect */
+  }
+}
 /* ===== Hero Section ===== */
 .hero {
   position: relative;
