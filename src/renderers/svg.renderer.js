@@ -219,7 +219,7 @@ export function renderStatItem({ x, y, label, value, icon, accentColor, showProg
   return `
   <g>
     ${iconElement}
-    <text x="${x}" y="${y}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="${fontSize}" font-weight="700" fill="${colors.primaryText}" textLength="${valueStr.length > 10 ? '90' : ''}" lengthAdjust="${valueStr.length > 10 ? 'spacingAndGlyphs' : ''}">${value}</text>
+    <text x="${x}" y="${y}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="${fontSize}" font-weight="700" fill="${colors.primaryText}" ${valueStr.length > 10 ? 'textLength="90" lengthAdjust="spacingAndGlyphs"' : ''}>${value}</text>
     <text x="${x}" y="${y + 20}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">${label}</text>
     ${progressBar}
   </g>`;
