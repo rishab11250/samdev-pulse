@@ -21,23 +21,11 @@ import { sendGracefulErrorSvg } from '../renderers/error.renderer.js';
 import { sendLoadingSpinner } from '../renderers/loading.renderer.js';
 import { GitHubErrorCode } from '../services/github.service.js';
 import { logApiAccess } from '../utils/logger.js';
+import { CF_RANK_MAP } from '../constants.js';
 
 const router = Router();
 
 const DEFAULT_USERNAME = process.env.DEFAULT_USERNAME || 'SamXop123';
-
-const CF_RANK_MAP = {
-  'newbie': 'Newbie',
-  'pupil': 'Pupil',
-  'specialist': 'Specialist',
-  'expert': 'Expert',
-  'candidate master': 'Cand.M',
-  'master': 'Master',
-  'international master': 'Int.M',
-  'grandmaster': 'GM',
-  'international grandmaster': 'Int.GM',
-  'legendary grandmaster': 'Leg.GM',
-};
 
 function formatNumber(num) {
   if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';

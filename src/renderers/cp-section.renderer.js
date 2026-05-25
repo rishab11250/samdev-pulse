@@ -1,5 +1,6 @@
 import { getTheme } from './svg.renderer.js';
 import { sanitizeSvgValue } from '../utils/svg-sanitizer.js';
+import { CF_RANK_MAP } from '../constants.js';
 
 const CARD_RADIUS = 16;
 const CARD_GAP = 16;
@@ -129,20 +130,7 @@ function renderCodeforcesCard(x, y, width, data, colors) {
   const col2X = x + 20 + (width - 40) / 3;
   const col3X = x + 20 + ((width - 40) / 3) * 2;
 
-  const rankMap = {
-    'newbie': 'Newbie',
-    'pupil': 'Pupil',
-    'specialist': 'Specialist',
-    'expert': 'Expert',
-    'candidate master': 'Cand.Master',
-    'master': 'Master',
-    'international master': 'Int.Master',
-    'grandmaster': 'GM',
-    'international grandmaster': 'Int.GM',
-    'legendary grandmaster': 'Leg.GM',
-  };
-
-  const rankShort = rankMap[data.rank?.toLowerCase()] ?? data.rank ?? 'unrated';
+  const rankShort = CF_RANK_MAP[data.rank?.toLowerCase()] ?? data.rank ?? 'unrated';
   const solved = data.problemsSolved ?? 0;
   const safeRating = sanitizeSvgValue(data.rating);
   const safeRankShort = sanitizeSvgValue(rankShort);
