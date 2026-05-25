@@ -221,6 +221,43 @@
     alert('Failed to generate PNG');
   }
 }
+const resetBtn = document.getElementById('resetBtn');
+
+if (resetBtn) {
+  resetBtn.addEventListener('click', () => {
+
+    usernameInput.value = '';
+    leetcodeInput.value = '';
+
+    if (codeforcesInput) {
+      codeforcesInput.value = '';
+    }
+
+    if (codechefInput) {
+      codechefInput.value = '';
+    }
+
+    if (themeSelect) {
+      themeSelect.selectedIndex = 0;
+    }
+
+    if (alignSelect) {
+      alignSelect.selectedIndex = 0;
+    }
+
+    if (hideTrophiesCheck) {
+      hideTrophiesCheck.checked = false;
+    }
+
+    const errorMsg = document.getElementById('username-error');
+
+    if (errorMsg) {
+      errorMsg.style.display = 'none';
+    }
+
+    updatePreview();
+  });
+}
   /* Handles copy button click */
   // async function handleCopyClick() {
   //   if (!copyBtn || !snippet) return;
