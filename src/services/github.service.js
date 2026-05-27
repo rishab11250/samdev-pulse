@@ -114,23 +114,50 @@ async function fetchAvatarDataUri(avatarUrl) {
     return null;
   }
 
+  // Use GitHub CDN resizing to get 96x96 image (under 5KB)
+  const resizedUrl = `${avatarUrl}&s=96`;
+  const MAX_SIZE_BYTES = 100 * 1024; // 100KB limit
+  const TIMEOUT_MS = 4000; // 4 second timeout
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
   try {
-    const response = await fetch(avatarUrl, {
+    const response = await fetch(resizedUrl, {
       headers: {
         'User-Agent': 'samdev-pulse',
         'Accept': 'image/*',
       },
+      signal: controller.signal,
     });
+
+    clearTimeout(timeout);
 
     if (!response.ok) {
       throw new Error(`Avatar fetch error: ${response.status}`);
     }
 
-    const contentType = response.headers.get('content-type') || 'image/png';
+    // Check Content-Length header if available
+    const contentLength = response.headers.get('content-length');
+    if (contentLength && parseInt(contentLength, 10) > MAX_SIZE_BYTES) {
+      throw new Error('Avatar image too large');
+    }
+
     const buffer = Buffer.from(await response.arrayBuffer());
+
+    // Double-check buffer size
+    if (buffer.length > MAX_SIZE_BYTES) {
+      throw new Error('Avatar image too large');
+    }
+
+    const contentType = response.headers.get('content-type') || 'image/png';
     const base64 = buffer.toString('base64');
     return `data:${contentType};base64,${base64}`;
-  } catch {
+  } catch (error) {
+    clearTimeout(timeout);
+    if (error.name === 'AbortError') {
+      console.warn('Avatar fetch timeout');
+    }
     return null;
   }
 }
