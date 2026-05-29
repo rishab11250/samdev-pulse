@@ -1,3 +1,4 @@
+// Jest configuration for samdev-pulse unit and integration tests
 export default {
   testEnvironment: 'jsdom',
   transform: {},
