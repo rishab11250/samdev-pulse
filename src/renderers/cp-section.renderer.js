@@ -69,7 +69,26 @@ export function renderCPSection({ x, y, width, leetcode, codeforces, codechef })
     `;
   }).join('');
 
-  return `<g>${cards}</g>`;
+  const cpDescription = sanitizeSvgValue(
+  [
+    leetcode ? 'LeetCode statistics available' : '',
+    codeforces ? 'Codeforces statistics available' : '',
+    codechef ? 'CodeChef statistics available' : '',
+  ]
+    .filter(Boolean)
+    .join(', ')
+);
+
+return `
+<g
+  role="group"
+  aria-labelledby="cp-title"
+>
+  <title id="cp-title">Competitive Programming Statistics</title>
+  <desc>${cpDescription}</desc>
+  ${cards}
+</g>
+`;
 }
 
 function renderLeetCodeCard(x, y, width, data, colors) {

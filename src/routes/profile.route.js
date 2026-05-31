@@ -44,12 +44,17 @@ function formatNumber(num) {
 }
 
 function getTopLanguages(repos, max = 5) {
+  if (!Array.isArray(repos) || repos.length === 0) {
+  return [];
+}
   const langCounts = {};
   repos.forEach((repo) => {
-    if (repo.language) {
-      langCounts[repo.language] = (langCounts[repo.language] || 0) + 1;
-    }
-  });
+  const language = repo?.language;
+
+  if (typeof language === 'string' && language.trim()) {
+    langCounts[language] = (langCounts[language] || 0) + 1;
+  }
+});
   return Object.entries(langCounts)
     .map(([label, value]) => ({ label, value }))
     .sort((a, b) => b.value - a.value)
@@ -202,24 +207,42 @@ router.get('/', async (req, res) => {
   }
 
   let chartData;
-  if (contributionData && contributionData.days && contributionData.days.length > 0) {
-    const recentDays = contributionData.days.slice(-30);
-    chartData = recentDays.map(day => day.count);
-  } else {
+
+if (
+  contributionData &&
+  Array.isArray(contributionData.days) &&
+  contributionData.days.length > 0
+) {
+  const recentDays = contributionData.days.slice(-30);
+
+  chartData = recentDays
+    .map(day => Number(day?.count))
+    .filter(Number.isFinite);
+
+  if (chartData.length === 0) {
     chartData = generateFakeContributionData(30);
   }
+} else {
+  chartData = generateFakeContributionData(30);
+}
 
-  const topLanguages = getTopLanguages(data.repos, 5);
+const topLanguages = getTopLanguages(data?.repos ?? [], 5);
 
+if (topLanguages.length === 0) {
+  topLanguages.push({
+    label: 'No Data',
+    value: 1,
+  });
+}
   const trophyData = {
-    commits: contributionData?.totalContributions || 0,
-    prs: contributionData?.totalPRs || 0,
-    issues: contributionData?.totalIssues || 0,
-    repos: data.publicRepos || 0,
-    stars: data.totalStars || 0,
-    followers: data.followers || 0,
-    reviews: contributionData?.totalReviews || 0,
-  };
+  commits: Number(contributionData?.totalContributions) || 0,
+  prs: Number(contributionData?.totalPRs) || 0,
+  issues: Number(contributionData?.totalIssues) || 0,
+  repos: Number(data?.publicRepos) || 0,
+  stars: Number(data?.totalStars) || 0,
+  followers: Number(data?.followers) || 0,
+  reviews: Number(contributionData?.totalReviews) || 0,
+};
 
   const cpSectionHeight = showCPSection ? 156 : 0;
   const cpRowY = row2Y + row2Height + LAYOUT.cardGap;
@@ -274,7 +297,20 @@ router.get('/', async (req, res) => {
         }),
   ].join('\n');
 
-  const svg = wrapSvg(content, width, totalHeight);
+  const svg = wrapSvg(
+  content,
+  width,
+  totalHeight,
+  {
+    title: `GitHub Dashboard for ${username}`,
+    description:
+      `GitHub profile statistics for ${username}. ` +
+      `${formatNumber(contributionData?.totalContributions || 0)} contributions, ` +
+      `${formatNumber(data.publicRepos)} repositories, ` +
+      `${formatNumber(data.followers)} followers, ` +
+      `${topLanguages.map(l => l.label).join(', ')} languages.`
+  }
+);
 
   res.setHeader('Content-Type', 'image/svg+xml');
   res.setHeader('Cache-Control', 'public, max-age=1800');
