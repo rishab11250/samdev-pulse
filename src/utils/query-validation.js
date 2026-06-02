@@ -41,10 +41,7 @@ export function normalizeGitHubUsername(value) {
   const username = normalizeString(value);
 
   if (!username) {
-    return {
-      username: '',
-      isValid: false,
-    };
+    return { username: '', isValid: false };
   }
 
   return {
@@ -68,9 +65,7 @@ export function normalizeCPHandle(value) {
 }
 
 export function normalizeProfileQuery(query) {
-  const usernameResult = normalizeGitHubUsername(
-    query.username
-  );
+  const usernameResult = normalizeGitHubUsername(query.username);
   const leetcode = normalizeCPHandle(query.leetcode);
   const codeforces = normalizeCPHandle(query.codeforces);
   const codechef = normalizeCPHandle(query.codechef);

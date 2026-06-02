@@ -35,7 +35,6 @@ router.use((req, res, next) => {
   next();
 });
 
-
 function formatNumber(num) {
   if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
   if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
@@ -65,16 +64,16 @@ router.get('/', async (req, res) => {
     logApiAccess(req).catch(err => console.error('Log failed:', err.message));
 
   const {
-  theme,
-  align,
-  hideTrophies,
-  username,
-  isUsernameValid,
-  leetcode,
-  codeforces,
-  codechef,
-  shouldRenderLeetCode,
-} = normalizeProfileQuery(req.query);
+    theme,
+    align,
+    hideTrophies,
+    username,
+    isUsernameValid,
+    leetcode,
+    codeforces,
+    codechef,
+    shouldRenderLeetCode,
+  } = normalizeProfileQuery(req.query);
   setTheme(theme);
 
   if (!isUsernameValid) {

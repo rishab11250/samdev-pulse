@@ -27,23 +27,23 @@ describe('query-validation.js', () => {
 
   test('normalizeGitHubUsername validates usernames correctly (lookahead rules, hyphens, and lengths)', () => {
     // Valid usernames
-    expect(normalizeGitHubUsername(' octocat ', 'SamXop123')).toEqual({ username: 'octocat', isValid: true });
-    expect(normalizeGitHubUsername('a-b', 'SamXop123')).toEqual({ username: 'a-b', isValid: true });
-    expect(normalizeGitHubUsername('abc-def-ghi', 'SamXop123')).toEqual({ username: 'abc-def-ghi', isValid: true });
-    expect(normalizeGitHubUsername('a', 'SamXop123')).toEqual({ username: 'a', isValid: true });
-    expect(normalizeGitHubUsername('1', 'SamXop123')).toEqual({ username: '1', isValid: true });
-    expect(normalizeGitHubUsername('a'.repeat(39), 'SamXop123')).toEqual({ username: 'a'.repeat(39), isValid: true });
+    expect(normalizeGitHubUsername(' octocat ')).toEqual({ username: 'octocat', isValid: true });
+    expect(normalizeGitHubUsername('a-b')).toEqual({ username: 'a-b', isValid: true });
+    expect(normalizeGitHubUsername('abc-def-ghi')).toEqual({ username: 'abc-def-ghi', isValid: true });
+    expect(normalizeGitHubUsername('a')).toEqual({ username: 'a', isValid: true });
+    expect(normalizeGitHubUsername('1')).toEqual({ username: '1', isValid: true });
+    expect(normalizeGitHubUsername('a'.repeat(39))).toEqual({ username: 'a'.repeat(39), isValid: true });
 
-    // Empty values use fallback default
-    expect(normalizeGitHubUsername('', 'SamXop123')).toEqual({ username: 'SamXop123', isValid: true });
+    // Empty values are invalid so the route can render the fallback error SVG
+    expect(normalizeGitHubUsername('')).toEqual({ username: '', isValid: false });
 
     // Invalid usernames
-    expect(normalizeGitHubUsername('bad/name', 'SamXop123')).toEqual({ username: 'bad/name', isValid: false });
-    expect(normalizeGitHubUsername('a--b', 'SamXop123')).toEqual({ username: 'a--b', isValid: false });
-    expect(normalizeGitHubUsername('a---b', 'SamXop123')).toEqual({ username: 'a---b', isValid: false });
-    expect(normalizeGitHubUsername('-ab', 'SamXop123')).toEqual({ username: '-ab', isValid: false });
-    expect(normalizeGitHubUsername('ab-', 'SamXop123')).toEqual({ username: 'ab-', isValid: false });
-    expect(normalizeGitHubUsername('a'.repeat(40), 'SamXop123')).toEqual({ username: 'a'.repeat(40), isValid: false });
+    expect(normalizeGitHubUsername('bad/name')).toEqual({ username: 'bad/name', isValid: false });
+    expect(normalizeGitHubUsername('a--b')).toEqual({ username: 'a--b', isValid: false });
+    expect(normalizeGitHubUsername('a---b')).toEqual({ username: 'a---b', isValid: false });
+    expect(normalizeGitHubUsername('-ab')).toEqual({ username: '-ab', isValid: false });
+    expect(normalizeGitHubUsername('ab-')).toEqual({ username: 'ab-', isValid: false });
+    expect(normalizeGitHubUsername('a'.repeat(40))).toEqual({ username: 'a'.repeat(40), isValid: false });
   });
 
   test('normalizeCPHandle sanitizes handles and treats boolean-like values as disabled', () => {
@@ -65,8 +65,7 @@ describe('query-validation.js', () => {
           leetcode: 'false',
           codeforces: ' tourist ',
           codechef: '@chef-user',
-        },
-        { defaultUsername: 'SamXop123' }
+        }
       )
     ).toEqual({
       theme: 'dracula',
@@ -81,21 +80,50 @@ describe('query-validation.js', () => {
     });
   });
 
+  test('normalizeProfileQuery rejects missing username', () => {
+    const result = normalizeProfileQuery(
+      {}
+    );
+
+    expect(result.isUsernameValid).toBe(false);
+    expect(result.username).toBe('');
+  });
+
   test('normalizeProfileQuery rejects invalid platform handles securely', () => {
     // Invalid leetcode injection
-    const q1 = normalizeProfileQuery({ leetcode: '<script>alert(1)</script>' }, { defaultUsername: 'SamXop123' });
+    const q1 = normalizeProfileQuery(
+      {
+        username: 'SamXop123',
+        leetcode: '<script>alert(1)</script>'
+      }
+    );
     expect(q1.isUsernameValid).toBe(false);
 
     // Invalid codeforces handle
-    const q2 = normalizeProfileQuery({ codeforces: 'bad.user!' }, { defaultUsername: 'SamXop123' });
+    const q2 = normalizeProfileQuery(
+      {
+        username: 'SamXop123',
+        codeforces: 'bad.user!'
+      }
+    );
     expect(q2.isUsernameValid).toBe(false);
 
     // Overlong platform handle (41 characters)
-    const q3 = normalizeProfileQuery({ codechef: 'a'.repeat(41) }, { defaultUsername: 'SamXop123' });
+    const q3 = normalizeProfileQuery(
+      {
+        username: 'SamXop123',
+        codechef: 'a'.repeat(41)
+      }
+    );
     expect(q3.isUsernameValid).toBe(false);
 
     // Valid handles with letters, numbers, underscore, hyphen
-    const q4 = normalizeProfileQuery({ leetcode: 'user_1-2' }, { defaultUsername: 'SamXop123' });
+    const q4 = normalizeProfileQuery(
+      {
+        username: 'SamXop123',
+        leetcode: 'user_1-2'
+      }
+    );
     expect(q4.isUsernameValid).toBe(true);
   });
 });
