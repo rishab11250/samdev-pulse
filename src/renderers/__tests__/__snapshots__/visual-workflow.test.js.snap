@@ -24,19 +24,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
       <stop offset="50%" stop-color="#34d399" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#22d3ee"/>
       <stop offset="100%" stop-color="#60a5fa"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -45,7 +45,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -53,12 +53,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#253457" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#253457" stroke-width="0.5" opacity="0.2"/>
@@ -68,16 +68,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#0b1020"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#22d3ee" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -85,19 +85,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: aurora 1`] = `
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#22d3ee" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#151f3b"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#334977" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#9db8d6" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -313,19 +311,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`]
       <stop offset="50%" stop-color="#89b4fa" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#a6e3a1" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#f38ba8"/>
       <stop offset="100%" stop-color="#a6e3a1"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -334,7 +332,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`]
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -342,12 +340,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`]
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#313244" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#313244" stroke-width="0.5" opacity="0.2"/>
@@ -357,16 +355,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`]
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#1e1e2e"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#f38ba8" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -374,19 +372,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: catppuccin 1`]
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#f38ba8" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#11111b"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#45475a" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#bac2de" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -602,19 +598,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
       <stop offset="50%" stop-color="#6366f1" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#7c3aed"/>
       <stop offset="100%" stop-color="#06b6d4"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -623,7 +619,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -631,12 +627,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#1e1e2e" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e1e2e" stroke-width="0.5" opacity="0.2"/>
@@ -646,16 +642,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#0a0a0f"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#7c3aed" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -663,19 +659,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dark 1`] = `
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#7c3aed" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#12121a"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#2a2a3a" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#94a3b8" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -891,19 +885,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = 
       <stop offset="50%" stop-color="#ff79c6" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#8be9fd" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#bd93f9"/>
       <stop offset="100%" stop-color="#8be9fd"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -912,7 +906,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = 
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -920,12 +914,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = 
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#44475a" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#44475a" stroke-width="0.5" opacity="0.2"/>
@@ -935,16 +929,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = 
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#282a36"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#bd93f9" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -952,19 +946,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: dracula 1`] = 
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#bd93f9" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#21222c"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#6272a4" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#6272a4" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -1180,19 +1172,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] 
       <stop offset="50%" stop-color="#ffb347" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#ff5e5b" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#ff7849"/>
       <stop offset="100%" stop-color="#ff5e5b"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -1201,7 +1193,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] 
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -1209,12 +1201,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] 
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#4a2c2c" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4a2c2c" stroke-width="0.5" opacity="0.2"/>
@@ -1224,16 +1216,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] 
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#1a0f0f"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#ff7849" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -1241,19 +1233,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: emberglow 1`] 
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#ff7849" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#2d1b1b"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#613737" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#e7c3b0" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -1469,19 +1459,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`
       <stop offset="50%" stop-color="#34d399" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#a7f3d0" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#6ee7b7"/>
       <stop offset="100%" stop-color="#a7f3d0"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -1490,7 +1480,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -1498,12 +1488,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#2d4739" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2d4739" stroke-width="0.5" opacity="0.2"/>
@@ -1513,16 +1503,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#0f1a14"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#6ee7b7" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -1530,19 +1520,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: forestnight 1`
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#6ee7b7" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#1a2b22"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#3d5e4d" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#b7d3c0" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -1758,19 +1746,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = 
       <stop offset="50%" stop-color="#fabd2f" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#fe8019" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#b8bb26"/>
       <stop offset="100%" stop-color="#fe8019"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -1779,7 +1767,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = 
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -1787,12 +1775,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = 
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#3c3836" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3c3836" stroke-width="0.5" opacity="0.2"/>
@@ -1802,16 +1790,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = 
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#282828"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#b8bb26" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -1819,19 +1807,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: gruvbox 1`] = 
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#b8bb26" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#1d2021"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#504945" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#a89984" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -2047,19 +2033,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
       <stop offset="50%" stop-color="#6366f1" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#0891b2" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#7c3aed"/>
       <stop offset="100%" stop-color="#0891b2"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -2068,7 +2054,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -2076,12 +2062,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#e1e4e8" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e1e4e8" stroke-width="0.5" opacity="0.2"/>
@@ -2091,16 +2077,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#fafbfc"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#7c3aed" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -2108,19 +2094,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: light 1`] = `
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#7c3aed" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#ffffff"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#d0d7de" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#57606a" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -2336,19 +2320,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] =
       <stop offset="50%" stop-color="#66bb6a" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#ab47bc" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#29b6f6"/>
       <stop offset="100%" stop-color="#ab47bc"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -2357,7 +2341,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] =
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -2365,12 +2349,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] =
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#455a64" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#455a64" stroke-width="0.5" opacity="0.2"/>
@@ -2380,16 +2364,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] =
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#263238"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#29b6f6" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -2397,19 +2381,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: material 1`] =
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#29b6f6" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#32424a"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#546e7a" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#b0bec5" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -2625,19 +2607,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunse
       <stop offset="50%" stop-color="#ef4444" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#ec4899" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#f97316"/>
       <stop offset="100%" stop-color="#ec4899"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -2646,7 +2628,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunse
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -2654,12 +2636,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunse
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#3d2b55" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3d2b55" stroke-width="0.5" opacity="0.2"/>
@@ -2669,16 +2651,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunse
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#1a1024"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#f97316" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -2686,19 +2668,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnight-sunse
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#f97316" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#27193a"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#5c3f7d" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#d6b8c7" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -2914,19 +2894,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1
       <stop offset="50%" stop-color="#8b5cf6" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#ff00ff" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#00f5ff"/>
       <stop offset="100%" stop-color="#ff00ff"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -2935,7 +2915,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -2943,12 +2923,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#2a2a40" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2a2a40" stroke-width="0.5" opacity="0.2"/>
@@ -2958,16 +2938,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#09090f"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#00f5ff" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -2975,19 +2955,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: midnightneon 1
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#00f5ff" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#151522"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#3b3b5c" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#b8b8d9" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -3203,19 +3181,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = 
       <stop offset="50%" stop-color="#66d9ef" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#ae81ff" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#a6e22e"/>
       <stop offset="100%" stop-color="#ae81ff"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -3224,7 +3202,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = 
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -3232,12 +3210,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = 
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#3e3d32" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3e3d32" stroke-width="0.5" opacity="0.2"/>
@@ -3247,16 +3225,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = 
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#272822"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#a6e22e" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -3264,19 +3242,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: monokai 1`] = 
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#a6e22e" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#1e1f1c"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#75715e" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#75715e" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -3492,19 +3468,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
       <stop offset="50%" stop-color="#81a1c1" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#88c0d0" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#5e81ac"/>
       <stop offset="100%" stop-color="#88c0d0"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -3513,7 +3489,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -3521,12 +3497,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#4c566a" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4c566a" stroke-width="0.5" opacity="0.2"/>
@@ -3536,16 +3512,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#2e3440"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#88c0d0" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -3553,19 +3529,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: nord 1`] = `
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#88c0d0" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#3b4252"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#d8dee9" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#d8dee9" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -3781,19 +3755,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`
       <stop offset="50%" stop-color="#82aaff" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#7fdbca" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#5fd7ff"/>
       <stop offset="100%" stop-color="#7fdbca"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -3802,7 +3776,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -3810,12 +3784,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#2f3b54" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2f3b54" stroke-width="0.5" opacity="0.2"/>
@@ -3825,16 +3799,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#0f111a"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#5fd7ff" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -3842,19 +3816,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: oceanicnext 1`
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#5fd7ff" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#1b2030"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#44506a" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#a7b1c2" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -4070,19 +4042,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`]
       <stop offset="50%" stop-color="#98c379" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#c678dd" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#61afef"/>
       <stop offset="100%" stop-color="#c678dd"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -4091,7 +4063,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`]
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -4099,12 +4071,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`]
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#3e4451" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3e4451" stroke-width="0.5" opacity="0.2"/>
@@ -4114,16 +4086,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`]
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#282c34"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#61afef" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -4131,19 +4103,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: onedarkpro 1`]
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#61afef" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#2c313c"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#4b5263" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#828997" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -4359,19 +4329,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`
       <stop offset="50%" stop-color="#bde0fe" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#caffbf" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#ffb3c1"/>
       <stop offset="100%" stop-color="#caffbf"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -4380,7 +4350,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -4388,12 +4358,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#4c4566" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4c4566" stroke-width="0.5" opacity="0.2"/>
@@ -4403,16 +4373,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#1f1d2b"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#ffb3c1" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -4420,19 +4390,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: pasteldream 1`
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#ffb3c1" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#312b45"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#5d5677" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#d6cdea" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -4648,19 +4616,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] 
       <stop offset="50%" stop-color="#9ccfd8" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#31748f" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#eb6f92"/>
       <stop offset="100%" stop-color="#31748f"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -4669,7 +4637,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] 
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -4677,12 +4645,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] 
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#6e6a86" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#6e6a86" stroke-width="0.5" opacity="0.2"/>
@@ -4692,16 +4660,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] 
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#191724"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#eb6f92" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -4709,19 +4677,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: rose-pine 1`] 
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#eb6f92" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#1f1d2e"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#908caa" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#908caa" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -4937,19 +4903,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] 
       <stop offset="50%" stop-color="#268bd2" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#859900" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#2aa198"/>
       <stop offset="100%" stop-color="#859900"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -4958,7 +4924,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] 
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -4966,12 +4932,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] 
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#586e75" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#586e75" stroke-width="0.5" opacity="0.2"/>
@@ -4981,16 +4947,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] 
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#002b36"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#2aa198" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -4998,19 +4964,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: solarized 1`] 
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#2aa198" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#073642"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#657b83" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#93a1a1" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -5226,19 +5190,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`
       <stop offset="50%" stop-color="#36f9f6" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#72f1b8" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#ff7edb"/>
       <stop offset="100%" stop-color="#72f1b8"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -5247,7 +5211,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -5255,12 +5219,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#4b3b6e" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4b3b6e" stroke-width="0.5" opacity="0.2"/>
@@ -5270,16 +5234,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#241b2f"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#ff7edb" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -5287,19 +5251,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: synthwave84 1`
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#ff7edb" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#34294f"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#5d4a87" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#c3b1e1" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
@@ -5515,19 +5477,19 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`]
       <stop offset="50%" stop-color="#bb9af7" stop-opacity="0.08"/>
       <stop offset="100%" stop-color="#7dcfff" stop-opacity="0.15"/>
     </linearGradient>
-    
+
     <!-- accent gradient for text/elements -->
     <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#7aa2f7"/>
       <stop offset="100%" stop-color="#7dcfff"/>
     </linearGradient>
-    
+
     <!-- card glow effect -->
     <filter id="cardGlow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="8" result="blur"/>
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
-    
+
     <!-- soft glow for accents -->
     <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
       <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -5536,7 +5498,7 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`]
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
+
     <!-- noise texture pattern -->
     <filter id="noise" x="0%" y="0%" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise"/>
@@ -5544,12 +5506,12 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`]
       <feBlend in="SourceGraphic" in2="noise" mode="overlay" result="blend"/>
       <feComposite in="blend" in2="SourceGraphic" operator="in"/>
     </filter>
-    
+
     <!-- dot pattern -->
     <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="0.5" fill="#292e42" opacity="0.3"/>
     </pattern>
-    
+
     <!-- grid pattern -->
     <pattern id="gridPattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#292e42" stroke-width="0.5" opacity="0.2"/>
@@ -5559,16 +5521,16 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`]
   <g aria-hidden="true">
   <!-- base background -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="#1a1b26"/>
-  
+
   <!-- gradient overlay -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#mainGradient)"/>
-  
+
   <!-- subtle grid pattern -->
   <rect x="0" y="0" width="960" height="600" rx="20" ry="20" fill="url(#gridPattern)" opacity="0.3"/>
-  
+
   <!-- top accent glow -->
   <ellipse cx="480" cy="0" rx="384" ry="120" fill="#7aa2f7" opacity="0.08"/>
-  
+
   <!-- border with glow -->
   <rect x="1" y="1" width="958" height="598" rx="20" ry="20" fill="none" stroke="url(#accentGradient)" stroke-width="1" opacity="0.4"/>
 </g>
@@ -5576,19 +5538,17 @@ exports[`Visual Regression: Structural Snapshots Snapshots theme: tokyonight 1`]
   <g role="group" aria-labelledby="card-test-card-50-50-title">
     <!-- card glow -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#7aa2f7" opacity="0.03" filter="url(#cardGlow)"/>
-    
+
     <!-- card background -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="#16161e"/>
-    
+
     <!-- inner gradient -->
     <rect x="50" y="50" width="200" height="100" rx="16" ry="16" fill="url(#mainGradient)" opacity="0.5"/>
-    
+
     <!-- border -->
     <rect x="50.5" y="50.5" width="199" height="99" rx="16" ry="16" fill="none" stroke="#3b4261" stroke-width="1" opacity="0.5"/>
-    
-    <!-- title -->
+
     <text id="card-test-card-50-50-title" x="70" y="78" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#a9b1d6" letter-spacing="0.5">TEST CARD</text>
-    
     <!-- title underline accent -->
     <rect x="70" y="86" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>
