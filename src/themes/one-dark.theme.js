@@ -1,4 +1,5 @@
-const oneDarkTheme = {
+const theme = {
+  name: 'one-dark',
   colors: {
     background: '#282C34',
     cardBackground: '#2C313C',
@@ -20,4 +21,4 @@ const oneDarkTheme = {
   chartColors: ['#61AFEF','#C678DD','#98C379','#E5C07B','#E06C75'],
 };
 
-export default oneDarkTheme;
+export default theme;

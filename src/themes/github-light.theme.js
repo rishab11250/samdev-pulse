@@ -1,4 +1,5 @@
-const githubLightTheme = {
+const theme = {
+  name: 'github-light',
   colors: {
     background: '#FFFFFF',
     cardBackground: '#F6F8FA',
@@ -20,4 +21,4 @@ const githubLightTheme = {
   chartColors: ['#0969DA','#8250DF','#1A7F37','#9A6700','#CF222E'],
 };
 
-export default githubLightTheme;
+export default theme;

@@ -1,4 +1,5 @@
-const cobalt2Theme = {
+const theme = {
+  name: 'cobalt2',
   colors: {
     background: '#193549',
     cardBackground: '#1F4662',
@@ -20,4 +21,4 @@ const cobalt2Theme = {
   chartColors: ['#FFC600','#FF9D00','#3AD900','#80FFBB','#88B4CA'],
 };
 
-export default cobalt2Theme;
+export default theme;
