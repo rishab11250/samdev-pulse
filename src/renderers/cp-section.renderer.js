@@ -41,9 +41,10 @@ export function renderCPSection({ x, y, width, leetcode, codeforces, codechef })
     const cardX = x + i * (cardWidth + CARD_GAP);
     const cardY = y;
     const safePlatformTitle = sanitizeSvgValue(platform.title.toUpperCase());
+    const cardId = `cp-${platform.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${cardX}-${cardY}`;
 
     return `
-      <g>
+      <g role="group" aria-labelledby="${cardId}-title">
         <rect x="${cardX}" y="${cardY}" width="${cardWidth}" height="${cardHeight}"
           rx="${CARD_RADIUS}" ry="${CARD_RADIUS}"
           fill="${colors.glow}" opacity="0.04" filter="url(#cardGlow)"/>
@@ -57,6 +58,7 @@ export function renderCPSection({ x, y, width, leetcode, codeforces, codechef })
           rx="${CARD_RADIUS}" ry="${CARD_RADIUS}"
           fill="none" stroke="${colors.borderLight}" stroke-width="1" opacity="0.4"/>
         <text
+          id="${cardId}-title"
           x="${cardX + 20}" y="${cardY + 30}"
           font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
           font-size="13" font-weight="600"
@@ -115,41 +117,67 @@ const statLabel = hasContestRating ? 'Rating' : 'Rank';
   const safeHardSolved = sanitizeSvgValue(data.hardSolved ?? 0);
 const safeStatValue = sanitizeSvgValue(statValue);
 const safeStatLabel = sanitizeSvgValue(statLabel);
+
+  const solvedValId = `val-solved-lc-${col1X}-${statsY}`;
+  const solvedLblId = `lbl-solved-lc-${col1X}-${statsY}`;
+
+  const easyValId = `val-easy-lc-${col2X}-${statsY}`;
+  const easyLblId = `lbl-easy-lc-${col2X}-${statsY}`;
+  const medValId = `val-med-lc-${col2X}-${statsY}`;
+  const medLblId = `lbl-med-lc-${col2X}-${statsY}`;
+  const hardValId = `val-hard-lc-${col2X}-${statsY}`;
+  const hardLblId = `lbl-hard-lc-${col2X}-${statsY}`;
+
+  const ratingValId = `val-rating-lc-${col3X}-${statsY}`;
+  const ratingLblId = `lbl-rating-lc-${col3X}-${statsY}`;
+
   return `
-    <text x="${col1X}" y="${statsY}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="32" font-weight="700" fill="${colors.primaryText}">${safeSolved}</text>
-    <text x="${col1X}" y="${statsY + 20}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Solved</text>
+    <g role="group" aria-labelledby="${solvedLblId} ${solvedValId}">
+      <text id="${solvedValId}" x="${col1X}" y="${statsY}"
+        font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="32" font-weight="700" fill="${colors.primaryText}">${safeSolved}</text>
+      <text id="${solvedLblId}" x="${col1X}" y="${statsY + 20}"
+        font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Solved</text>
+    </g>
 
-    <text x="${col2X}" y="${statsY - 18}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" font-weight="600" fill="#10b981">E</text>
-    <text x="${col2X + 14}" y="${statsY - 18}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="14" font-weight="700" fill="${colors.primaryText}">${safeEasySolved}</text>
+    <g role="group" aria-label="Difficulty Breakdown">
+      <g role="group" aria-labelledby="${easyLblId} ${easyValId}">
+        <text id="${easyLblId}" x="${col2X}" y="${statsY - 18}"
+          font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="11" font-weight="600" fill="#10b981">E</text>
+        <text id="${easyValId}" x="${col2X + 14}" y="${statsY - 18}"
+          font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="14" font-weight="700" fill="${colors.primaryText}">${safeEasySolved}</text>
+      </g>
 
-    <text x="${col2X}" y="${statsY}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" font-weight="600" fill="#f59e0b">M</text>
-    <text x="${col2X + 14}" y="${statsY}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="14" font-weight="700" fill="${colors.primaryText}">${safeMediumSolved}</text>
+      <g role="group" aria-labelledby="${medLblId} ${medValId}">
+        <text id="${medLblId}" x="${col2X}" y="${statsY}"
+          font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="11" font-weight="600" fill="#f59e0b">M</text>
+        <text id="${medValId}" x="${col2X + 14}" y="${statsY}"
+          font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="14" font-weight="700" fill="${colors.primaryText}">${safeMediumSolved}</text>
+      </g>
 
-    <text x="${col2X}" y="${statsY + 18}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" font-weight="600" fill="#ef4444">H</text>
-    <text x="${col2X + 14}" y="${statsY + 18}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="14" font-weight="700" fill="${colors.primaryText}">${safeHardSolved}</text>
+      <g role="group" aria-labelledby="${hardLblId} ${hardValId}">
+        <text id="${hardLblId}" x="${col2X}" y="${statsY + 18}"
+          font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="11" font-weight="600" fill="#ef4444">H</text>
+        <text id="${hardValId}" x="${col2X + 14}" y="${statsY + 18}"
+          font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="14" font-weight="700" fill="${colors.primaryText}">${safeHardSolved}</text>
+      </g>
+    </g>
 
-    <text x="${col3X}" y="${statsY}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="32" font-weight="700" fill="${colors.primaryText}">${safeStatValue}</text>
-    <text x="${col3X}" y="${statsY + 20}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">${safeStatLabel}</text>
+    <g role="group" aria-labelledby="${ratingLblId} ${ratingValId}">
+      <text id="${ratingValId}" x="${col3X}" y="${statsY}"
+        font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="32" font-weight="700" fill="${colors.primaryText}">${safeStatValue}</text>
+      <text id="${ratingLblId}" x="${col3X}" y="${statsY + 20}"
+        font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">${safeStatLabel}</text>
+    </g>
   `;
 }
 
@@ -166,37 +194,59 @@ function renderCodeforcesCard(x, y, width, data, colors) {
   const safeSolved = sanitizeSvgValue(solved);
   const safeMaxRating = sanitizeSvgValue(data.maxRating);
 
+  const cfRatingValId = `val-rating-cf-${col1X}-${statsY}`;
+  const cfRatingLblId = `lbl-rating-cf-${col1X}-${statsY}`;
+
+  const cfRankValId = `val-rank-cf-${col2X}-${statsY}`;
+  const cfRankLblId = `lbl-rank-cf-${col2X}-${statsY}`;
+
+  const cfSolvedValId = `val-solved-cf-${col2X}-${statsY}`;
+  const cfSolvedLblId = `lbl-solved-cf-${col2X}-${statsY}`;
+
+  const cfMaxRatingValId = `val-maxrating-cf-${col3X}-${statsY}`;
+  const cfMaxRatingLblId = `lbl-maxrating-cf-${col3X}-${statsY}`;
+
   return `
     <!-- Rating -->
-    <text x="${col1X}" y="${statsY}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="32" font-weight="700" fill="${colors.primaryText}">${safeRating}</text>
-    <text x="${col1X}" y="${statsY + 20}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Rating</text>
+    <g role="group" aria-labelledby="${cfRatingLblId} ${cfRatingValId}">
+      <text id="${cfRatingValId}" x="${col1X}" y="${statsY}"
+        font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="32" font-weight="700" fill="${colors.primaryText}">${safeRating}</text>
+      <text id="${cfRatingLblId}" x="${col1X}" y="${statsY + 20}"
+        font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Rating</text>
+    </g>
 
     <!-- Rank + Solved -->
-    <text x="${col2X+6}" y="${statsY - 18}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" font-weight="600" fill="#6366f1">R</text>
-    <text x="${col2X + 18}" y="${statsY - 18}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" font-weight="700" fill="${colors.primaryText}">${safeRankShort}</text>
+    <g role="group" aria-label="Competitive Rank and Problems Solved">
+      <g role="group" aria-labelledby="${cfRankLblId} ${cfRankValId}">
+        <text id="${cfRankLblId}" x="${col2X+6}" y="${statsY - 18}"
+          font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="11" font-weight="600" fill="#6366f1">R</text>
+        <text id="${cfRankValId}" x="${col2X + 18}" y="${statsY - 18}"
+          font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="11" font-weight="700" fill="${colors.primaryText}">${safeRankShort}</text>
+      </g>
 
-    <text x="${col2X+6}" y="${statsY + 2}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" font-weight="600" fill="#10b981">S</text>
-    <text x="${col2X + 18}" y="${statsY + 2}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" font-weight="700" fill="${colors.primaryText}">${safeSolved}</text>
+      <g role="group" aria-labelledby="${cfSolvedLblId} ${cfSolvedValId}">
+        <text id="${cfSolvedLblId}" x="${col2X+6}" y="${statsY + 2}"
+          font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="11" font-weight="600" fill="#10b981">S</text>
+        <text id="${cfSolvedValId}" x="${col2X + 18}" y="${statsY + 2}"
+          font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+          font-size="11" font-weight="700" fill="${colors.primaryText}">${safeSolved}</text>
+      </g>
+    </g>
 
     <!-- Max Rating -->
-    <text x="${col3X+6}" y="${statsY}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="32" font-weight="700" fill="${colors.primaryText}">${safeMaxRating}</text>
-    <text x="${col3X}" y="${statsY + 20}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Max Rating</text>
+    <g role="group" aria-labelledby="${cfMaxRatingLblId} ${cfMaxRatingValId}">
+      <text id="${cfMaxRatingValId}" x="${col3X+6}" y="${statsY}"
+        font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="32" font-weight="700" fill="${colors.primaryText}">${safeMaxRating}</text>
+      <text id="${cfMaxRatingLblId}" x="${col3X}" y="${statsY + 20}"
+        font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Max Rating</text>
+    </g>
   `;
 }
 
@@ -213,36 +263,51 @@ function renderCodeChefCard(x, y, width, data, colors) {
   const safeDivision = sanitizeSvgValue(division);
   const safeGlobalRank = sanitizeSvgValue(globalRank);
 
+  const ccRatingValId = `val-rating-cc-${col1X}-${statsY}`;
+  const ccRatingLblId = `lbl-rating-cc-${col1X}-${statsY}`;
+
+  const ccStarsValId = `val-stars-cc-${col2X}-${statsY}`;
+  const ccStarsLblId = `lbl-stars-cc-${col2X}-${statsY}`;
+
+  const ccGlobalRankValId = `val-rank-cc-${col3X}-${statsY}`;
+  const ccGlobalRankLblId = `lbl-rank-cc-${col3X}-${statsY}`;
+
   return `
     <!-- Current Rating -->
-    <text x="${col1X}" y="${statsY}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="32" font-weight="700" fill="${colors.primaryText}">${safeCurrentRating}</text>
-    <text x="${col1X}" y="${statsY + 20}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Rating</text>
+    <g role="group" aria-labelledby="${ccRatingLblId} ${ccRatingValId}">
+      <text id="${ccRatingValId}" x="${col1X}" y="${statsY}"
+        font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="32" font-weight="700" fill="${colors.primaryText}">${safeCurrentRating}</text>
+      <text id="${ccRatingLblId}" x="${col1X}" y="${statsY + 20}"
+        font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Rating</text>
+    </g>
 
-    <!-- Stars -->
-    <text x="${col2X + 10}" y="${statsY - 8}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="22" font-weight="700" fill="#f59e0b">${safeStars}</text>
-    <text x="${col2X + 10}" y="${statsY + 10}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Stars</text>
+    <!-- Stars & Division -->
+    <g role="group" aria-labelledby="${ccStarsLblId} ${ccStarsValId}" aria-label="CodeChef Star and Division Rating">
+      <text id="${ccStarsValId}" x="${col2X + 10}" y="${statsY - 8}"
+        font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="22" font-weight="700" fill="#f59e0b">${safeStars}</text>
+      <text id="${ccStarsLblId}" x="${col2X + 10}" y="${statsY + 10}"
+        font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Stars</text>
 
-    <!-- Division badge -->
-    <rect x="${col2X + 6}" y="${statsY + 17}" width="44" height="16" rx="4"
-      fill="#8b5cf6" opacity="0.18"/>
-    <text x="${col2X + 28}" y="${statsY + 29}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="10" font-weight="600" fill="#a78bfa" text-anchor="middle">${safeDivision}</text>
+      <!-- Division badge -->
+      <rect x="${col2X + 6}" y="${statsY + 17}" width="44" height="16" rx="4"
+        fill="#8b5cf6" opacity="0.18"/>
+      <text x="${col2X + 28}" y="${statsY + 29}"
+        font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="10" font-weight="600" fill="#a78bfa" text-anchor="middle">${safeDivision}</text>
+    </g>
 
     <!-- Global Rank -->
-    <text x="${col3X}" y="${statsY - 8}"
-      font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="24" font-weight="700" fill="${colors.primaryText}">${safeGlobalRank}</text>
-    <text x="${col3X}" y="${statsY + 10}"
-      font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-      font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Global Rank</text>
+    <g role="group" aria-labelledby="${ccGlobalRankLblId} ${ccGlobalRankValId}">
+      <text id="${ccGlobalRankValId}" x="${col3X}" y="${statsY - 8}"
+        font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="24" font-weight="700" fill="${colors.primaryText}">${safeGlobalRank}</text>
+      <text id="${ccGlobalRankLblId}" x="${col3X}" y="${statsY + 10}"
+        font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">Global Rank</text>
+    </g>
   `;
 }

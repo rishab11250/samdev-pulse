@@ -183,9 +183,10 @@ export function renderCard({ x, y, width, height, title, glowColor }) {
   const { colors } = currentTheme;
   const glow = glowColor || colors.glow;
   const safeTitle = sanitizeSvgValue(String(title).toUpperCase());
+  const cardId = `card-${String(title).toLowerCase().replace(/[^a-z0-9]/g, '-')}-${x}-${y}`;
 
   return `
-  <g>
+  <g role="group" aria-labelledby="${cardId}-title">
     <!-- card glow -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${glow}" opacity="0.03" filter="url(#cardGlow)"/>
 
@@ -198,9 +199,7 @@ export function renderCard({ x, y, width, height, title, glowColor }) {
     <!-- border -->
     <rect x="${x + 0.5}" y="${y + 0.5}" width="${width - 1}" height="${height - 1}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="none" stroke="${colors.borderLight}" stroke-width="1" opacity="0.5"/>
 
-    <!-- title -->
-    <text x="${x + 20}" y="${y + 28}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="${colors.secondaryText}" letter-spacing="0.5">${safeTitle}</text>
-
+    <text id="${cardId}-title" x="${x + 20}" y="${y + 28}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="${colors.secondaryText}" letter-spacing="0.5">${safeTitle}</text>
     <!-- title underline accent -->
     <rect x="${x + 20}" y="${y + 36}" width="32" height="2" rx="1" fill="url(#accentGradient)" opacity="0.6"/>
   </g>`;
@@ -239,11 +238,15 @@ export function renderStatItem({ x, y, label, value, icon, accentColor, showProg
       <rect x="${x}" y="${y + 28}" width="${fillWidth}" height="3" rx="1.5" fill="${accent}"/>`;
   }
 
+  const cleanLabel = String(label).toLowerCase().replace(/[^a-z0-9]/g, '');
+  const valId = `val-${cleanLabel}-${x}-${y}`;
+  const lblId = `lbl-${cleanLabel}-${x}-${y}`;
+
   return `
-  <g>
+  <g role="group" aria-labelledby="${lblId} ${valId}">
     ${iconElement}
-    <text x="${x}" y="${y}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="${fontSize}" font-weight="700" fill="${colors.primaryText}" ${valueStr.length > 10 ? 'textLength="90" lengthAdjust="spacingAndGlyphs"' : ''}>${safeValue}</text>
-    <text x="${x}" y="${y + 20}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">${safeLabel}</text>
+    <text id="${valId}" x="${x}" y="${y}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="${fontSize}" font-weight="700" fill="${colors.primaryText}" ${valueStr.length > 10 ? 'textLength="90" lengthAdjust="spacingAndGlyphs"' : ''}>${safeValue}</text>
+    <text id="${lblId}" x="${x}" y="${y + 20}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="${colors.mutedText}" letter-spacing="0.3">${safeLabel}</text>
     ${progressBar}
   </g>`;
 }
@@ -262,19 +265,31 @@ function renderVerticalEMH({ x, y, easy, medium, hard, accentColor }) {
   const lineHeight = 18;
   const labelWidth = 14;
 
+  const easyValId = `val-easy-${x}-${y}`;
+  const easyLblId = `lbl-easy-${x}-${y}`;
+  const medValId = `val-med-${x}-${y}`;
+  const medLblId = `lbl-med-${x}-${y}`;
+  const hardValId = `val-hard-${x}-${y}`;
+  const hardLblId = `lbl-hard-${x}-${y}`;
+
   return `
-  <g>
+  <g role="group" aria-label="LeetCode Difficulty Breakdown">
     <!-- easy -->
-    <text x="${x}" y="${y - 18}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="${easyColor}">E</text>
-    <text x="${x + labelWidth}" y="${y - 18}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="${colors.primaryText}">${safeEasy}</text>
-
+    <g role="group" aria-labelledby="${easyLblId} ${easyValId}">
+      <text id="${easyLblId}" x="${x}" y="${y - 18}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="${easyColor}">E</text>
+      <text id="${easyValId}" x="${x + labelWidth}" y="${y - 18}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="${colors.primaryText}">${safeEasy}</text>
+    </g>
+    
     <!-- medium -->
-    <text x="${x}" y="${y}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="${medColor}">M</text>
-    <text x="${x + labelWidth}" y="${y}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="${colors.primaryText}">${safeMedium}</text>
-
+    <g role="group" aria-labelledby="${medLblId} ${medValId}">
+      <text id="${medLblId}" x="${x}" y="${y}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="${medColor}">M</text>
+      <text id="${medValId}" x="${x + labelWidth}" y="${y}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="${colors.primaryText}">${safeMedium}</text>
+    </g>
     <!-- hard -->
-    <text x="${x}" y="${y + 18}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="${hardColor}">H</text>
-    <text x="${x + labelWidth}" y="${y + 18}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="${colors.primaryText}">${safeHard}</text>
+    <g role="group" aria-labelledby="${hardLblId} ${hardValId}">
+      <text id="${hardLblId}" x="${x}" y="${y + 18}" font-family="'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="${hardColor}">H</text>
+      <text id="${hardValId}" x="${x + labelWidth}" y="${y + 18}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="${colors.primaryText}">${safeHard}</text>
+    </g>
   </g>`;
 }
 
@@ -285,6 +300,7 @@ export function renderCardWithStats({ x, y, width, height, title, stats, cardAcc
   const statsStartY = y + 85;
   const statSpacing = (width - 40) / stats.length;
   const safeTitle = sanitizeSvgValue(String(title).toUpperCase());
+  const cardId = `card-${String(title).toLowerCase().replace(/[^a-z0-9]/g, '-')}-${x}-${y}`;
 
   const statsContent = stats.map((stat, index) => {
     const statX = x + 20 + (index * statSpacing);
@@ -315,7 +331,7 @@ export function renderCardWithStats({ x, y, width, height, title, stats, cardAcc
   }).join('');
 
   return `
-  <g>
+  <g role="group" aria-labelledby="${cardId}-title">
     <!-- card glow -->
     <rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="${glow}" opacity="0.04" filter="url(#cardGlow)"/>
 
@@ -329,8 +345,7 @@ export function renderCardWithStats({ x, y, width, height, title, stats, cardAcc
     <rect x="${x + 0.5}" y="${y + 0.5}" width="${width - 1}" height="${height - 1}" rx="${LAYOUT.cardRadius}" ry="${LAYOUT.cardRadius}" fill="none" stroke="${colors.borderLight}" stroke-width="1" opacity="0.4"/>
 
     <!-- title -->
-    <text x="${x + 20}" y="${y + 30}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="${colors.secondaryText}" letter-spacing="0.5">${safeTitle}</text>
-
+    <text id="${cardId}-title" x="${x + 20}" y="${y + 30}" font-family="'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="${colors.secondaryText}" letter-spacing="0.5">${safeTitle}</text>
     <!-- title accent line -->
     <rect x="${x + 20}" y="${y + 40}" width="28" height="2" rx="1" fill="url(#accentGradient)" opacity="0.7"/>
 
@@ -612,6 +627,8 @@ export function wrapSvg(
   viewBox="0 0 ${width} ${height}"
   role="img"
   aria-labelledby="dashboard-title dashboard-desc"
+  xml:lang="en"
+  lang="en"
 >
 <title id="dashboard-title">${title}</title>
 <desc id="dashboard-desc">${description}</desc>

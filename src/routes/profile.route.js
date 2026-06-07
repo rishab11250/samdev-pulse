@@ -23,6 +23,7 @@ import { GitHubErrorCode } from '../services/github.service.js';
 import { trackProfileRequest } from '../services/analytics.service.js';
 import { CF_RANK_MAP } from '../constants.js';
 import { normalizeProfileQuery, normalizeTheme } from '../utils/query-validation.js';
+import { buildDashboardAccessibility } from '../utils/svg-accessibility.js';
 
 const router = Router();
 
@@ -288,20 +289,29 @@ if (topLanguages.length === 0) {
         }),
   ].join('\n');
 
+  const totalLangValue = topLanguages.reduce((sum, item) => sum + item.value, 0);
+  const languagesWithPct = topLanguages.map(item => ({
+    label: item.label,
+    percentage: totalLangValue ? Math.round((item.value / totalLangValue) * 100) : 0
+  }));
+
+  const accessibility = buildDashboardAccessibility({
+    username,
+    contributions: contributionData ? contributionData.totalContributions : 0,
+    prs: contributionData ? contributionData.totalPRs : 0,
+    issues: contributionData ? contributionData.totalIssues : 0,
+    currentStreak: contributionData ? contributionData.currentStreak : 0,
+    longestStreak: contributionData ? contributionData.longestStreak : 0,
+    languages: languagesWithPct,
+    trophies: trophyData,
+  });
+
   const svg = wrapSvg(
-  content,
-  width,
-  totalHeight,
-  {
-    title: `GitHub Dashboard for ${username}`,
-    description:
-      `GitHub profile statistics for ${username}. ` +
-      `${formatNumber(contributionData?.totalContributions || 0)} contributions, ` +
-      `${formatNumber(data.publicRepos)} repositories, ` +
-      `${formatNumber(data.followers)} followers, ` +
-      `${topLanguages.map(l => l.label).join(', ')} languages.`
-  }
-);
+    content,
+    width,
+    totalHeight,
+    accessibility
+  );
 
   res.setHeader('Content-Type', 'image/svg+xml');
   res.setHeader('Cache-Control', 'public, max-age=1800');
