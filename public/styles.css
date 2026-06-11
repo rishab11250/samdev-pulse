@@ -2106,3 +2106,43 @@ html {
     max-width: 260px;
   }
 }
+
+/* ===== Theme Comparison CTA ===== */
+.theme-comparison-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--border);
+}
+
+.theme-comparison-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+.theme-comparison-btn svg {
+  transition: transform var(--transition-base);
+}
+
+.theme-comparison-btn:hover svg {
+  transform: translateX(4px);
+}
+
+.theme-comparison-hint {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .theme-comparison-cta {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+  }
+}

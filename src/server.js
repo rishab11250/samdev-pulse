@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { inject } from '@vercel/analytics';
 import profileRoute from './routes/profile.route.js';
+import themeComparisonRoute from './routes/theme-comparison.route.js';
 import { initializeAnalytics } from './services/analytics.service.js';
 import { githubCache } from './utils/cache.js';
 
@@ -59,6 +60,12 @@ app.get('/api/cache/stats', (req, res) => {
 });
 
 app.use('/api/profile', profileRoute);
+app.use('/api/theme-preview', themeComparisonRoute);
+
+// Theme Comparison page
+app.get('/theme-comparison', (req, res) => {
+  res.sendFile(join(__dirname, '..', 'public', 'theme-comparison.html'));
+});
 
 const server = app.listen(PORT, () => {
   if (!IS_PRODUCTION) {
