@@ -260,7 +260,9 @@
             <path d="m21 21-4.35-4.35" />
           </svg>
           <input type="text" id="themeSearch" class="theme-search-input"
-            placeholder="Search themes… e.g. pastel, neon, tokyo" autocomplete="off" />
+            placeholder="Search themes… e.g. pastel, neon, tokyo" autocomplete="off"
+            role="combobox" aria-autocomplete="list" aria-controls="themeSearchSuggestions"
+            aria-haspopup="listbox" aria-expanded="false" />
           <div class="theme-search-suggestions" id="themeSearchSuggestions" role="listbox"
             aria-label="Theme search suggestions"></div>
         </div>
