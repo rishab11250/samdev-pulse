@@ -42,12 +42,12 @@
 
     <div class="navbtn" id="nav-menu">
       <ul>
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#features">FEATURES</a></li>
-        <li><a href="#themes">THEMES</a></li>
-        <li><a href="#preview">TRY IT LIVE</a></li>
-        <li><a href="#guide">GUIDE</a></li>
-        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#home" class="nav-link">HOME</a></li>
+        <li><a href="#features" class="nav-link">FEATURES</a></li>
+        <li><a href="#themes" class="nav-link">THEMES</a></li>
+        <li><a href="#preview" class="nav-link">TRY IT LIVE</a></li>
+        <li><a href="#guide" class="nav-link">GUIDE</a></li>
+        <li><a href="#about" class="nav-link">ABOUT</a></li>
       </ul>
     </div>
 
@@ -260,7 +260,11 @@
             <path d="m21 21-4.35-4.35" />
           </svg>
           <input type="text" id="themeSearch" class="theme-search-input"
-            placeholder="Search themes… e.g. pastel, neon, tokyo" autocomplete="off" />
+            placeholder="Search themes… e.g. pastel, neon, tokyo" autocomplete="off"
+            role="combobox" aria-autocomplete="list" aria-controls="themeSearchSuggestions"
+            aria-haspopup="listbox" aria-expanded="false" />
+          <div class="theme-search-suggestions" id="themeSearchSuggestions" role="listbox"
+            aria-label="Theme search suggestions"></div>
         </div>
         <div class="theme-filter-chips">
           <button class="theme-chip active" data-cat="all">All <span class="chip-count" id="count-all"></span></button>
@@ -268,9 +272,12 @@
           <button class="theme-chip" data-cat="neon"> Neon</button>
           <button class="theme-chip" data-cat="pastel"> Pastel</button>
           <button class="theme-chip" data-cat="minimal"> Minimal</button>
+          <button class="theme-chip" data-cat="domain"> Domain</button>
         </div>
         <p class="theme-result-count" id="themeResultCount"></p>
       </div>
+
+      <!-- Theme Comparison CTA - In the middle -->
 
       <div class="themes-grid" id="themesGrid">
         <div class="theme-card" data-theme="" data-cat="minimal" data-colors="black purple white" tabindex="0"
@@ -568,15 +575,104 @@
             <p class="theme-desc">Soft dreamy pastel gradients and tones</p>
           </div>
         </div>
+
+        <div class="theme-card" data-theme="androidstudio" data-cat="domain" data-colors="green dark grey" tabindex="0"
+          role="button" aria-label="Select Android Studio theme">
+          <div class="theme-preview">
+            <div class="theme-swatch-group">
+              <div class="theme-swatch" style="background: #1e1e24;"></div>
+              <div class="theme-swatch" style="background: #3ddc84;"></div>
+              <div class="theme-swatch" style="background: #e3e3e6;"></div>
+            </div>
+          </div>
+          <div class="theme-info">
+            <h4 class="theme-name">Android Studio</h4>
+            <p class="theme-desc">Material Design inspired dark editor with Android green accents</p>
+          </div>
+        </div>
+
+        <div class="theme-card" data-theme="xcode" data-cat="domain" data-colors="blue grey pink" tabindex="0"
+          role="button" aria-label="Select Xcode theme">
+          <div class="theme-preview">
+            <div class="theme-swatch-group">
+              <div class="theme-swatch" style="background: #292a30;"></div>
+              <div class="theme-swatch" style="background: #2f6ed3;"></div>
+              <div class="theme-swatch" style="background: #dfdfe0;"></div>
+            </div>
+          </div>
+          <div class="theme-info">
+            <h4 class="theme-name">Xcode</h4>
+            <p class="theme-desc">Apple Xcode inspired dark slate editor palette</p>
+          </div>
+        </div>
+
+        <div class="theme-card" data-theme="webdev" data-cat="domain" data-colors="yellow orange blue" tabindex="0"
+          role="button" aria-label="Select Web Development theme">
+          <div class="theme-preview">
+            <div class="theme-swatch-group">
+              <div class="theme-swatch" style="background: #1a1a24;"></div>
+              <div class="theme-swatch" style="background: #f0db4f;"></div>
+              <div class="theme-swatch" style="background: #e3e3e9;"></div>
+            </div>
+          </div>
+          <div class="theme-info">
+            <h4 class="theme-name">Web Development</h4>
+            <p class="theme-desc">Inspired by HTML, CSS, and JS editor aesthetics</p>
+          </div>
+        </div>
+
+        <div class="theme-card" data-theme="aiml" data-cat="domain" data-colors="purple cyan orange" tabindex="0"
+          role="button" aria-label="Select AI/ML theme">
+          <div class="theme-preview">
+            <div class="theme-swatch-group">
+              <div class="theme-swatch" style="background: #0d0b18;"></div>
+              <div class="theme-swatch" style="background: #00f5ff;"></div>
+              <div class="theme-swatch" style="background: #e9e3ff;"></div>
+            </div>
+          </div>
+          <div class="theme-info">
+            <h4 class="theme-name">AI/ML</h4>
+            <p class="theme-desc">Futuristic deep purple AI tooling inspired design</p>
+          </div>
+        </div>
+
+        <div class="theme-card" data-theme="gamedev" data-cat="domain" data-colors="orange green cyan" tabindex="0"
+          role="button" aria-label="Select Game Development theme">
+          <div class="theme-preview">
+            <div class="theme-swatch-group">
+              <div class="theme-swatch" style="background: #1c1c1e;"></div>
+              <div class="theme-swatch" style="background: #ff9c00;"></div>
+              <div class="theme-swatch" style="background: #e1e1e3;"></div>
+            </div>
+          </div>
+          <div class="theme-info">
+            <h4 class="theme-name">Game Development</h4>
+            <p class="theme-desc">Unity and Unreal Engine editor inspired accents</p>
+          </div>
+        </div>
         <!-- Show More / Show Less button -->
         <div class="theme-show-more-wrapper" id="themeShowMoreWrapper">
-          <button class="theme-show-more-btn" id="themeShowMoreBtn">
-            Show All Themes
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </button>
-        </div>
+
+  <button class="theme-show-more-btn" id="themeShowMoreBtn">
+    Show All Themes
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  </button>
+
+  <br><br>
+  &nbsp;&nbsp;&nbsp;
+
+  <a href="/theme-comparison"
+     class="theme-show-more-btn"
+     style="text-decoration: none; display: inline-flex; align-items: center;">
+    View Theme Comparison
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+  </a>
+
+</div>
         <!-- Empty state shown when nothing matches -->
         <div class="theme-empty-state" id="themeEmptyState" style="display:none;">
           <p>No themes match your search.</p>
@@ -628,6 +724,11 @@
                 <option value="emberglow">Ember Glow</option>
                 <option value="midnightneon">Midnight Neon</option>
                 <option value="pasteldream">Pastel Dream</option>
+                <option value="androidstudio">Android Studio</option>
+                <option value="xcode">Xcode</option>
+                <option value="webdev">Web Development</option>
+                <option value="aiml">AI/ML</option>
+                <option value="gamedev">Game Development</option>
               </select>
             </div>
           </div>
@@ -728,14 +829,14 @@
           <h3 class="usage-title">Basic Usage</h3>
           <p class="usage-description">Simply add this to your GitHub README.md:</p>
           <div class="code-wrapper">
-            <button id="copy-btn" class="copy-btn">
+            <button class="copy-btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
               </svg>
             </button>
             <pre
-              class="code-block"><code id="snippet">![samdev-pulse](https://samdev-pulse.vercel.app/api/profile?username=YOUR_USERNAME)</code></pre>
+              class="code-block"><code>![samdev-pulse](https://samdev-pulse.vercel.app/api/profile?username=YOUR_USERNAME)</code></pre>
           </div>
         </div>
 
@@ -744,7 +845,7 @@
           <h3 class="usage-title">With Theme</h3>
           <p class="usage-description">Customize with your favorite color scheme:</p>
           <div class="code-wrapper">
-            <button id="copy-btn" class="copy-btn">
+            <button class="copy-btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
@@ -759,7 +860,7 @@
           <h3 class="usage-title">With CP Stats</h3>
           <p class="usage-description">Show off your competitive programming stats:</p>
           <div class="code-wrapper">
-            <button id="copy-btn" class="copy-btn">
+            <button class="copy-btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
@@ -774,7 +875,7 @@
           <h3 class="usage-title">Full Customization</h3>
           <p class="usage-description">Combine all options for maximum impact:</p>
           <div class="code-wrapper">
-            <button id="copy-btn" class="copy-btn">
+            <button class="copy-btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />

@@ -121,7 +121,7 @@ describe('svg.renderer.js', () => {
         height: 140,
         title: 'Test Card',
       });
-      expect(card).toContain('Test Card');
+      expect(card).toContain('TEST CARD');
     });
 
     test('includes card title', () => {
@@ -132,7 +132,7 @@ describe('svg.renderer.js', () => {
         height: 100,
         title: 'GitHub Activity',
       });
-      expect(card).toContain('GitHub Activity');
+      expect(card).toContain('GITHUB ACTIVITY');
     });
 
     test('positions card correctly', () => {
@@ -180,8 +180,7 @@ describe('svg.renderer.js', () => {
         height: 100,
         title: 'Test & Special',
       });
-      // Card title should be properly escaped for SVG
-      expect(card).toContain('Test');
+      expect(card).toContain('TEST &amp; SPECIAL');
     });
   });
 
@@ -201,7 +200,7 @@ describe('svg.renderer.js', () => {
         });
 
         expect(bg).toContain('<rect');
-        expect(card).toContain('Test');
+        expect(card).toContain('TEST');
       });
     });
   });

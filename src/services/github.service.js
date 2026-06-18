@@ -1,6 +1,8 @@
 // GitHub REST API Service
 
 import { githubCache } from '../utils/cache.js';
+import { loadConfig } from '../config/index.js';
+import { HttpErrorCode, httpRequest } from '../utils/http-client.js';
 
 const GITHUB_API_BASE = 'https://api.github.com';
 
@@ -25,11 +27,11 @@ function errorFromStatus(status) {
   if (status === 404) {
     return new GitHubRequestError('User not found', GitHubErrorCode.NOT_FOUND, 404);
   }
-  if (status === 403) {
+  if (status === 403 || status === 429) {
     return new GitHubRequestError(
       'GitHub API rate limit exceeded',
       GitHubErrorCode.RATE_LIMIT,
-      403
+      status
     );
   }
   if (status >= 500) {
@@ -48,32 +50,45 @@ function errorFromStatus(status) {
 
 /* function to get authorization headers once to use it everywhere */
 function getHeaders() {
+  const config = loadConfig();
   const headers = {
     'Accept': 'application/vnd.github.v3+json',
     'User-Agent': 'samdev-pulse',
   };
 
-  if (process.env.GITHUB_TOKEN) {
-    headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
+  if (config.github.token) {
+    headers['Authorization'] = `Bearer ${config.github.token}`;
   }
 
   return headers;
 }
 
 async function assertOk(response) {
-  if (!response.ok) {
-    throw errorFromStatus(response.status);
+  if (!response.success) {
+    if (response.error?.code === HttpErrorCode.TIMEOUT) {
+      throw new GitHubRequestError('GitHub API timeout', GitHubErrorCode.NETWORK);
+    }
+    if (response.error?.code === HttpErrorCode.INVALID_JSON) {
+      throw new GitHubRequestError('GitHub API returned invalid JSON', GitHubErrorCode.API_ERROR, response.status);
+    }
+    if (response.status) {
+      throw errorFromStatus(response.status);
+    }
+    throw new GitHubRequestError(
+      response.error?.message || 'Failed to reach GitHub API',
+      GitHubErrorCode.NETWORK
+    );
   }
 }
 
 /* fetch user profile from GitHub API */
 async function fetchUserProfile(username) {
-  const response = await fetch(`${GITHUB_API_BASE}/users/${username}`, {
+  const response = await httpRequest(`${GITHUB_API_BASE}/users/${username}`, {
     headers: getHeaders(),
   });
 
   await assertOk(response);
-  return response.json();
+  return response.data;
 }
 
 /* fetch public repos for a user */
@@ -84,14 +99,14 @@ async function fetchUserRepos(username) {
   const MAX_PAGES = 3;
 
   while (page <= MAX_PAGES) {
-    const response = await fetch(
+    const response = await httpRequest(
       `${GITHUB_API_BASE}/users/${username}/repos?per_page=${perPage}&page=${page}&sort=updated`,
       { headers: getHeaders() }
     );
 
     await assertOk(response);
 
-    const data = await response.json();
+    const data = response.data;
     repos.push(...data);
 
     if (data.length < perPage) {
@@ -115,48 +130,42 @@ async function fetchAvatarDataUri(avatarUrl) {
     return null;
   }
 
-  // Use GitHub CDN resizing to get 96x96 image (under 5KB)
+  // Use GitHub CDN to request 96×96 image (keeps response small)
   const resizedUrl = `${avatarUrl}&s=96`;
-  const MAX_SIZE_BYTES = 100 * 1024; // 100KB limit
-  const TIMEOUT_MS = 4000; // 4 second timeout
-
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  const AVATAR_TIMEOUT_MS = 8000;
+  const MAX_SIZE_BYTES = 100 * 1024; // 100 KB safety limit
 
   try {
-    const response = await fetch(resizedUrl, {
+    const response = await httpRequest(resizedUrl, {
       headers: {
-        'User-Agent': 'samdev-pulse',
         'Accept': 'image/*',
       },
-      signal: controller.signal,
+      timeoutMs: AVATAR_TIMEOUT_MS,
+      responseType: 'arrayBuffer',
     });
 
-    clearTimeout(timeout);
-
-    if (!response.ok) {
-      throw new Error(`Avatar fetch error: ${response.status}`);
+    if (!response.success) {
+      throw new Error(response.error?.message || `Avatar fetch error: ${response.status}`);
     }
 
     // Check Content-Length header if available
-    const contentLength = response.headers.get('content-length');
+    const contentLength = response.headers?.get('content-length');
     if (contentLength && parseInt(contentLength, 10) > MAX_SIZE_BYTES) {
       throw new Error('Avatar image too large');
     }
 
-    const buffer = Buffer.from(await response.arrayBuffer());
+    const buffer = Buffer.from(response.data);
 
     // Double-check buffer size
     if (buffer.length > MAX_SIZE_BYTES) {
       throw new Error('Avatar image too large');
     }
 
-    const contentType = response.headers.get('content-type') || 'image/png';
+    const contentType = response.headers?.get('content-type') || 'image/png';
     const base64 = buffer.toString('base64');
     return `data:${contentType};base64,${base64}`;
   } catch (error) {
-    clearTimeout(timeout);
-    if (error.name === 'AbortError') {
+    if (error.name === 'AbortError' || error.code === HttpErrorCode.TIMEOUT) {
       console.warn('Avatar fetch timeout');
     }
     return null;
@@ -187,6 +196,7 @@ function normalizeUserData(profile, repos, avatarDataUri) {
       stars: repo.stargazers_count,
       forks: repo.forks_count,
       language: repo.language,
+      topics: repo.topics || [],
       url: repo.html_url,
       updatedAt: repo.updated_at,
     })),

@@ -14,6 +14,9 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
+# Visual Previews
+previews/
+
 # IDE
 .idea/
 .vscode/
@@ -30,3 +33,5 @@ DEPLOYMENT.md
 # Vercel
 .vercel
 
+# Coverage reports
+coverage/

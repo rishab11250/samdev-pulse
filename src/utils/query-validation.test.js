@@ -1,5 +1,4 @@
-import test from 'node:test';
-import assert from 'node:assert/strict';
+import { describe, test, expect } from '@jest/globals';
 import {
   normalizeAlign,
   normalizeBoolean,
@@ -9,66 +8,66 @@ import {
   normalizeTheme,
 } from './query-validation.js';
 
-test('normalizeBoolean supports common true and false query values', () => {
-  assert.equal(normalizeBoolean(' true '), true);
-  assert.equal(normalizeBoolean('1'), true);
-  assert.equal(normalizeBoolean('YES'), true);
-  assert.equal(normalizeBoolean(' false '), false);
-  assert.equal(normalizeBoolean('0'), false);
-  assert.equal(normalizeBoolean('NO'), false);
-});
+describe('query-validation.js', () => {
+  test('normalizeBoolean supports common true and false query values', () => {
+    expect(normalizeBoolean(' true ')).toBe(true);
+    expect(normalizeBoolean('1')).toBe(true);
+    expect(normalizeBoolean('YES')).toBe(true);
+    expect(normalizeBoolean(' false ')).toBe(false);
+    expect(normalizeBoolean('0')).toBe(false);
+    expect(normalizeBoolean('NO')).toBe(false);
+  });
 
-test('normalizeTheme and normalizeAlign trim, lowercase, and fall back safely', () => {
-  assert.equal(normalizeTheme(' TokyoNight '), 'tokyonight');
-  assert.equal(normalizeTheme('unknown-theme'), 'dark');
-  assert.equal(normalizeAlign(' CENTER '), 'center');
-  assert.equal(normalizeAlign('middle'), 'left');
-});
+  test('normalizeTheme and normalizeAlign trim, lowercase, and fall back safely', () => {
+    expect(normalizeTheme(' TokyoNight ')).toBe('tokyonight');
+    expect(normalizeTheme('unknown-theme')).toBe('dark');
+    expect(normalizeAlign(' CENTER ')).toBe('center');
+    expect(normalizeAlign('middle')).toBe('left');
+  });
 
-test('normalizeGitHubUsername validates usernames correctly (lookahead rules, hyphens, and lengths)', () => {
-  // Valid usernames
-  assert.deepEqual(normalizeGitHubUsername(' octocat ', 'SamXop123'), { username: 'octocat', isValid: true });
-  assert.deepEqual(normalizeGitHubUsername('a-b', 'SamXop123'), { username: 'a-b', isValid: true });
-  assert.deepEqual(normalizeGitHubUsername('abc-def-ghi', 'SamXop123'), { username: 'abc-def-ghi', isValid: true });
-  assert.deepEqual(normalizeGitHubUsername('a', 'SamXop123'), { username: 'a', isValid: true });
-  assert.deepEqual(normalizeGitHubUsername('1', 'SamXop123'), { username: '1', isValid: true });
-  assert.deepEqual(normalizeGitHubUsername('a'.repeat(39), 'SamXop123'), { username: 'a'.repeat(39), isValid: true });
-  
-  // Empty values use fallback default
-  assert.deepEqual(normalizeGitHubUsername('', 'SamXop123'), { username: 'SamXop123', isValid: true });
+  test('normalizeGitHubUsername validates usernames correctly (lookahead rules, hyphens, and lengths)', () => {
+    // Valid usernames
+    expect(normalizeGitHubUsername(' octocat ')).toEqual({ username: 'octocat', isValid: true });
+    expect(normalizeGitHubUsername('a-b')).toEqual({ username: 'a-b', isValid: true });
+    expect(normalizeGitHubUsername('abc-def-ghi')).toEqual({ username: 'abc-def-ghi', isValid: true });
+    expect(normalizeGitHubUsername('a')).toEqual({ username: 'a', isValid: true });
+    expect(normalizeGitHubUsername('1')).toEqual({ username: '1', isValid: true });
+    expect(normalizeGitHubUsername('a'.repeat(39))).toEqual({ username: 'a'.repeat(39), isValid: true });
 
-  // Invalid usernames
-  assert.deepEqual(normalizeGitHubUsername('bad/name', 'SamXop123'), { username: 'bad/name', isValid: false });
-  assert.deepEqual(normalizeGitHubUsername('a--b', 'SamXop123'), { username: 'a--b', isValid: false });
-  assert.deepEqual(normalizeGitHubUsername('a---b', 'SamXop123'), { username: 'a---b', isValid: false });
-  assert.deepEqual(normalizeGitHubUsername('-ab', 'SamXop123'), { username: '-ab', isValid: false });
-  assert.deepEqual(normalizeGitHubUsername('ab-', 'SamXop123'), { username: 'ab-', isValid: false });
-  assert.deepEqual(normalizeGitHubUsername('a'.repeat(40), 'SamXop123'), { username: 'a'.repeat(40), isValid: false });
-});
+    // Empty values are invalid so the route can render the fallback error SVG
+    expect(normalizeGitHubUsername('')).toEqual({ username: '', isValid: false });
 
-test('normalizeCPHandle sanitizes handles and treats boolean-like values as disabled', () => {
-  assert.equal(normalizeCPHandle(' @tourist '), 'tourist');
-  assert.equal(normalizeCPHandle('user/name?<x>'), 'usernamex');
-  assert.equal(normalizeCPHandle('false'), null);
-  assert.equal(normalizeCPHandle('0'), null);
-  assert.equal(normalizeCPHandle('yes'), null);
-});
+    // Invalid usernames
+    expect(normalizeGitHubUsername('bad/name')).toEqual({ username: 'bad/name', isValid: false });
+    expect(normalizeGitHubUsername('a--b')).toEqual({ username: 'a--b', isValid: false });
+    expect(normalizeGitHubUsername('a---b')).toEqual({ username: 'a---b', isValid: false });
+    expect(normalizeGitHubUsername('-ab')).toEqual({ username: '-ab', isValid: false });
+    expect(normalizeGitHubUsername('ab-')).toEqual({ username: 'ab-', isValid: false });
+    expect(normalizeGitHubUsername('a'.repeat(40))).toEqual({ username: 'a'.repeat(40), isValid: false });
+  });
 
-test('normalizeProfileQuery returns normalized values for the profile route', () => {
-  assert.deepEqual(
-    normalizeProfileQuery(
-      {
-        username: ' octocat ',
-        theme: ' Dracula ',
-        align: 'RIGHT',
-        hide_trophies: 'yes',
-        leetcode: 'false',
-        codeforces: ' tourist ',
-        codechef: '@chef-user',
-      },
-      { defaultUsername: 'SamXop123' }
-    ),
-    {
+  test('normalizeCPHandle sanitizes handles and treats boolean-like values as disabled', () => {
+    expect(normalizeCPHandle(' @tourist ')).toBe('tourist');
+    expect(normalizeCPHandle('user/name?<x>')).toBe('usernamex');
+    expect(normalizeCPHandle('false')).toBe(null);
+    expect(normalizeCPHandle('0')).toBe(null);
+    expect(normalizeCPHandle('yes')).toBe(null);
+  });
+
+  test('normalizeProfileQuery returns normalized values for the profile route', () => {
+    expect(
+      normalizeProfileQuery(
+        {
+          username: ' octocat ',
+          theme: ' Dracula ',
+          align: 'RIGHT',
+          hide_trophies: 'yes',
+          leetcode: 'false',
+          codeforces: ' tourist ',
+          codechef: '@chef-user',
+        }
+      )
+    ).toEqual({
       theme: 'dracula',
       align: 'right',
       hideTrophies: true,
@@ -78,24 +77,54 @@ test('normalizeProfileQuery returns normalized values for the profile route', ()
       codeforces: 'tourist',
       codechef: 'chef-user',
       shouldRenderLeetCode: false,
-    }
-  );
-});
+      customThemeOverrides: {},
+    });
+  });
 
-test('normalizeProfileQuery rejects invalid platform handles securely', () => {
-  // Invalid leetcode injection
-  const q1 = normalizeProfileQuery({ leetcode: '<script>alert(1)</script>' }, { defaultUsername: 'SamXop123' });
-  assert.equal(q1.isUsernameValid, false);
+  test('normalizeProfileQuery falls back to the configured default username', () => {
+    const result = normalizeProfileQuery(
+      {}
+    );
 
-  // Invalid codeforces handle
-  const q2 = normalizeProfileQuery({ codeforces: 'bad.user!' }, { defaultUsername: 'SamXop123' });
-  assert.equal(q2.isUsernameValid, false);
+    expect(result.isUsernameValid).toBe(true);
+    expect(result.username).toBe('SamXop123');
+  });
 
-  // Overlong platform handle (41 characters)
-  const q3 = normalizeProfileQuery({ codechef: 'a'.repeat(41) }, { defaultUsername: 'SamXop123' });
-  assert.equal(q3.isUsernameValid, false);
+  test('normalizeProfileQuery rejects invalid platform handles securely', () => {
+    // Invalid leetcode injection
+    const q1 = normalizeProfileQuery(
+      {
+        username: 'SamXop123',
+        leetcode: '<script>alert(1)</script>'
+      }
+    );
+    expect(q1.isUsernameValid).toBe(false);
 
-  // Valid handles with letters, numbers, underscore, hyphen
-  const q4 = normalizeProfileQuery({ leetcode: 'user_1-2' }, { defaultUsername: 'SamXop123' });
-  assert.equal(q4.isUsernameValid, true);
+    // Invalid codeforces handle
+    const q2 = normalizeProfileQuery(
+      {
+        username: 'SamXop123',
+        codeforces: 'bad.user!'
+      }
+    );
+    expect(q2.isUsernameValid).toBe(false);
+
+    // Overlong platform handle (41 characters)
+    const q3 = normalizeProfileQuery(
+      {
+        username: 'SamXop123',
+        codechef: 'a'.repeat(41)
+      }
+    );
+    expect(q3.isUsernameValid).toBe(false);
+
+    // Valid handles with letters, numbers, underscore, hyphen
+    const q4 = normalizeProfileQuery(
+      {
+        username: 'SamXop123',
+        leetcode: 'user_1-2'
+      }
+    );
+    expect(q4.isUsernameValid).toBe(true);
+  });
 });

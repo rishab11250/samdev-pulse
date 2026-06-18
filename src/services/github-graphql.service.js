@@ -1,18 +1,21 @@
 // GitHub GraphQL API Service - Contribution Calendar & Streaks
 
 import { githubCache } from "../utils/cache.js";
+import { loadConfig } from "../config/index.js";
+import { HttpErrorCode, httpRequest } from "../utils/http-client.js";
 
 const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
 
 /* authorization headers for GraphQL API*/
 function getHeaders() {
+  const config = loadConfig();
   const headers = {
     "Content-Type": "application/json",
     "User-Agent": "samdev-pulse",
   };
 
-  if (process.env.GITHUB_TOKEN) {
-    headers["Authorization"] = `Bearer ${process.env.GITHUB_TOKEN}`;
+  if (config.github.token) {
+    headers["Authorization"] = `Bearer ${config.github.token}`;
   }
 
   return headers;
@@ -50,11 +53,11 @@ query($username: String!) {
 
 /* fetch contribution data from GitHub GraphQL API */
 async function fetchContributionData(username) {
-  if (!process.env.GITHUB_TOKEN) {
+  if (!loadConfig().github.enabled) {
     throw new Error("GITHUB_TOKEN required for contribution data");
   }
 
-  const response = await fetch(GITHUB_GRAPHQL_URL, {
+  const response = await httpRequest(GITHUB_GRAPHQL_URL, {
     method: "POST",
     headers: getHeaders(),
     body: JSON.stringify({
@@ -63,20 +66,26 @@ async function fetchContributionData(username) {
     }),
   });
 
+  if (!response.success) {
+    if (response.error?.code === HttpErrorCode.TIMEOUT) {
+      throw new Error("GitHub GraphQL API timeout");
+    }
+    if (response.error?.code === HttpErrorCode.INVALID_JSON) {
+      throw new Error("GitHub GraphQL API returned invalid JSON");
+    }
+    if (response.status === 403 || response.status === 429) {
+      throw new Error("GitHub API rate limit exceeded");
+    }
+    throw new Error(`GitHub GraphQL API error: ${response.status || 0}`);
+  }
+
   // handles rate limits silently
-  const rateLimitRemaining = response.headers.get("x-ratelimit-remaining");
+  const rateLimitRemaining = response.headers?.get("x-ratelimit-remaining");
   if (rateLimitRemaining && parseInt(rateLimitRemaining, 10) < 10) {
     // rate limit warning suppressed for production
   }
 
-  if (!response.ok) {
-    if (response.status === 403) {
-      throw new Error("GitHub API rate limit exceeded");
-    }
-    throw new Error(`GitHub GraphQL API error: ${response.status}`);
-  }
-
-  const json = await response.json();
+  const json = response.data;
 
   if (json.errors) {
     throw new Error(json.errors[0]?.message || "GraphQL query failed");
