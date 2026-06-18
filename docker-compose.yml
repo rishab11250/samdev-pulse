@@ -7,17 +7,4 @@ services:
       - "3000:3000"
     env_file:
       - .env
-    # Wait for Mongo to be healthy before starting the app
-    depends_on:
-      mongo:
-        condition: service_started
     restart: unless-stopped
-
-  mongo:
-    image: mongo:7
-    volumes:
-      - mongo_data:/data/db
-    restart: unless-stopped
-
-volumes:
-  mongo_data:

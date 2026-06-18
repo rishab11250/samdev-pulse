@@ -249,7 +249,9 @@ http://localhost:3000/api/profile?username=SamXop123
 
 # 🐳 Docker Development (Alternative)
 
-Prefer a containerized environment? Use Docker to run the entire stack (app + MongoDB) without installing anything locally besides Docker.
+Prefer a containerized environment? Use Docker to run the app without installing Node.js or any dependencies locally.
+
+> MongoDB is not included in the Docker setup — it is optional and only used for production analytics logging. The app runs fine without it.
 
 ## Prerequisites
 
@@ -277,16 +279,13 @@ The app will be available at:
 http://localhost:3000/api/profile?username=SamXop123
 ```
 
-MongoDB is automatically started on `mongodb://localhost:27017` (only needed for analytics logging).
-
 ## Useful Commands
 
 | Command                              | Description                          |
 | ------------------------------------ | ------------------------------------ |
-| `docker compose up --build`          | Build images and start services      |
+| `docker compose up --build`          | Build images and start the app       |
 | `docker compose up -d`               | Start in detached (background) mode  |
-| `docker compose down`                | Stop and remove containers           |
-| `docker compose down -v`             | Stop, remove containers + volumes    |
+| `docker compose down`                | Stop and remove the container        |
 | `docker compose logs -f app`         | Follow app logs                      |
 | `docker compose exec app sh`         | Open a shell in the running app      |
 
