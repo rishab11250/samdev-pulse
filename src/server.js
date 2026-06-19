@@ -63,6 +63,7 @@ const globalLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   handler: sendRateLimitSvg,
+  skip: () => !config.isProduction,
 });
 
 const usernameLimiter = rateLimit({
@@ -75,6 +76,7 @@ const usernameLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   handler: sendRateLimitSvg,
+  skip: () => !config.isProduction,
 });
 
 app.use('/api/profile', globalLimiter, usernameLimiter, profileRoute);
